@@ -391,26 +391,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void tfEmpAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmpAgeActionPerformed
         // TODO add your handling code here:
-      /*  String CellNo = tfEmpAge.getText();
-        int length = CellNo.length();
-        char c = evt.getKeyChar();
-        
-        //checks for number 0 to 1
-        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
-            ///checks if length not more than 10 digit
-            if(length<2){
-                tfEmpAge.setEditable(true);
-                
-            } else{
-                tfEmpAge.setEditable(false);
-                }
-        }else{
-            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
-                tfEmpAge.setEditable(true);
-            } else{
-                tfEmpAge.setEditable(false);
-                 }
-            }*/
     }//GEN-LAST:event_tfEmpAgeActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -564,7 +544,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 model.setValueAt(date, EmpTable.getSelectedRow(),4);
                 //int index = EmpTable.getSelectedRow();
                 //date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(index,4));
-                //model.setValueAt(date, TableEmp.getSelectedRow(),4);
+                //model.setValueAt(date, EmpTable.getSelectedRow(),4);
                 model.setValueAt(level, EmpTable.getSelectedRow(),5);
                 model.setValueAt(teaminfo, EmpTable.getSelectedRow(),6);
                 model.setValueAt(positiontitle, EmpTable.getSelectedRow(),7);
@@ -590,7 +570,7 @@ public class MainJFrame extends javax.swing.JFrame {
             tfEmpID.setText("");
             tfEmpAge.setText("");
             cbEmpGender.setSelectedIndex(0); 
-            //ffEmpDate.setCalendar(null);
+            ffEmpDate.setCalendar(null);
             cbEmpLevel.setSelectedIndex(0);
             tfEmpInfo.setText("");
             tfEmpPTitle.setText("");
@@ -622,6 +602,125 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnImgActionPerformed
 
+    //Emp name is pressed
+    private void tfEmpNameClick(java.awt.event.KeyEvent evt) {                                  
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c) || Character.isWhitespace(c )|| Character.isISOControl(c)){
+            tfEmpName.setEditable(true);
+        } else {
+            tfEmpName.setEditable(false);
+        }
+    }
+    //Emp age is pressed
+    private void tfEmpAgeClick(java.awt.event.KeyEvent evt) {                                 
+        // TODO add your handling code here:
+        String CellNo = tfEmpAge.getText();
+        int length = CellNo.length();
+        char c = evt.getKeyChar();
+        
+        //check for number 0 to 1
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            ///checks if length not more than 2 digit
+            if(length<2){
+                tfEmpAge.setEditable(true);
+                
+            } else{
+                tfEmpAge.setEditable(false);
+            }
+        }else{
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                tfEmpAge.setEditable(true);
+            } else{
+                tfEmpAge.setEditable(false);
+            }
+        }
+    }
+    
+    
+    
+     private void tfEmpCellClick(java.awt.event.KeyEvent evt) {                                         
+        // TODO add your handling code here:
+        
+      //  try{
+        String CellNo = tfEmpCell.getText();
+        int length = CellNo.length();
+        char c = evt.getKeyChar();
+        
+        //checks for number 0 to 1
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            ///checks if length not more than 10 digit
+            if(length<10){
+                tfEmpCell.setEditable(true);
+                
+            } else{
+                tfEmpCell.setEditable(false);
+            }
+        }else{
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                tfEmpCell.setEditable(true);
+            } else{
+                tfEmpCell.setEditable(false);
+            }
+        }
+     //  }
+      /*  catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        } */
+        
+    }  
+    
+         private void EmpTableClick(java.awt.event.MouseEvent evt) {                                      
+        // set data to textfield
+        
+        DefaultTableModel model  = (DefaultTableModel) EmpTable.getModel();
+        
+        //set data to text field when row is selected
+        String tableName = model.getValueAt(EmpTable.getSelectedRow(), 0).toString();
+        String tableEmpID = model.getValueAt(EmpTable.getSelectedRow(), 1).toString();
+        String tableAge = model.getValueAt(EmpTable.getSelectedRow(), 2).toString();
+        String tableGender = model.getValueAt(EmpTable.getSelectedRow(), 3).toString();
+        String tableStartDate = model.getValueAt(EmpTable.getSelectedRow(), 4).toString();
+        String tableLevel = model.getValueAt(EmpTable.getSelectedRow(), 5).toString();
+        String tableTeamInfo = model.getValueAt(EmpTable.getSelectedRow(), 6).toString();
+        String tablePositionTitle = model.getValueAt(EmpTable.getSelectedRow(), 7).toString();
+        String tableCellNo = model.getValueAt(EmpTable.getSelectedRow(), 8).toString();
+        String tableEmail = model.getValueAt(EmpTable.getSelectedRow(), 9).toString();
+        String tableImage = model.getValueAt(EmpTable.getSelectedRow(), 10).toString();
+        //set to textField
+        
+        tfEmpName.setText(tableName);
+        tfEmpID.setText(tableEmpID);
+        tfEmpAge.setText(tableAge);
+        cbEmpGender.setSelectedItem(tableGender);
+        //ffEmpDate.setText(tableStartDate);
+        cbEmpLevel.setSelectedItem(tableLevel);
+        tfEmpInfo.setText(tableTeamInfo);
+        tfEmpPTitle.setText(tablePositionTitle);
+        tfEmpCell.setText(tableCellNo);
+        tfEmpEmail.setText(tableEmail);
+        //tfImage.setText(tableImage);
+        
+        
+        
+    }                                     
+
+    public void search(String str){
+        DefaultTableModel model = (DefaultTableModel)EmpTable.getModel();
+         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<DefaultTableModel>(model);
+         EmpTable.setRowSorter(trs);
+         trs.setRowFilter(RowFilter.regexFilter(str));
+    }
+    
+    private void tfEmpSearchKeyReleased(java.awt.event.KeyEvent evt) {                                     
+         // TODO add your handling code here:
+         String search = tfEmpSearch.getText();
+         search(search);
+         
+    } 
+    
+    //for table
      class myTableCellRenderer implements TableCellRenderer{
         
         public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, 
