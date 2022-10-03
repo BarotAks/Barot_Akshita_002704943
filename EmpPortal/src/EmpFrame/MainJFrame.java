@@ -26,6 +26,13 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+
+
+
 /**
  *
  * @author akshitabarot
@@ -51,7 +58,7 @@ public class MainJFrame extends javax.swing.JFrame {
         hdngPortal = new javax.swing.JPanel();
         hdngLabel = new javax.swing.JLabel();
         fldPanel = new javax.swing.JPanel();
-        empID = new javax.swing.JLabel();
+        employeeID = new javax.swing.JLabel();
         empName = new javax.swing.JLabel();
         empAge = new javax.swing.JLabel();
         empLevel = new javax.swing.JLabel();
@@ -75,12 +82,11 @@ public class MainJFrame extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
         ffEmpDate = new com.toedter.calendar.JDateChooser();
-        dispPanel = new javax.swing.JPanel();
-        btnDelete = new javax.swing.JButton();
         empSearch = new javax.swing.JLabel();
-        tfEmpSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         EmpTable = new javax.swing.JTable();
+        tfEmpSearch = new javax.swing.JTextField();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,8 +101,8 @@ public class MainJFrame extends javax.swing.JFrame {
         fldPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee Profile", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charter", 3, 14))); // NOI18N
         fldPanel.setOpaque(false);
 
-        empID.setFont(new java.awt.Font("Charter", 3, 12)); // NOI18N
-        empID.setText("Employee ID");
+        employeeID.setFont(new java.awt.Font("Charter", 3, 12)); // NOI18N
+        employeeID.setText("Employee ID");
 
         empName.setFont(new java.awt.Font("Charter", 3, 12)); // NOI18N
         empName.setText("Name");
@@ -121,6 +127,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
         empEmail.setFont(new java.awt.Font("Charter", 3, 12)); // NOI18N
         empEmail.setText("Email Address");
+
+        tfEmpName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfEmpNameActionPerformed(evt);
+            }
+        });
 
         tfEmpAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +194,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addComponent(empDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(empName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tfEmpID)
-            .addComponent(empID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(employeeID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tfEmpName)
             .addComponent(empAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(empGender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -205,9 +217,11 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cbEmpLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfEmpAge, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbEmpGender, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(fldPanelLayout.createSequentialGroup()
+                .addComponent(tfEmpAge, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         fldPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreate, btnUpdate});
@@ -220,7 +234,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(empID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -263,12 +277,37 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(fldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         fldPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCreate, btnUpdate});
 
-        dispPanel.setOpaque(false);
+        empSearch.setFont(new java.awt.Font("Charter", 3, 12)); // NOI18N
+        empSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        empSearch.setText("Search");
+        empSearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        EmpTable.setFont(new java.awt.Font("Charter", 1, 13)); // NOI18N
+        EmpTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "EmpID", "Age", "Gender", "StartDate", "Level", "Team Info", "Position Info", "Cell no", "Email ID", "Photo"
+            }
+        ));
+        EmpTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmpTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(EmpTable);
+
+        tfEmpSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfEmpSearchActionPerformed(evt);
+            }
+        });
 
         btnDelete.setBackground(new java.awt.Color(255, 102, 102));
         btnDelete.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
@@ -278,63 +317,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-
-        empSearch.setFont(new java.awt.Font("Charter", 3, 12)); // NOI18N
-        empSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        empSearch.setText("Search");
-        empSearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-
-        tfEmpSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfEmpSearchActionPerformed(evt);
-            }
-        });
-
-        EmpTable.setFont(new java.awt.Font("Charter", 1, 13)); // NOI18N
-        EmpTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Name", "EmpID", "Age", "Gender", "StartDate", "Level", "Team Info", "Position Info", "Cell no", "Email ID", "Photo"
-            }
-        ));
-        jScrollPane1.setViewportView(EmpTable);
-
-        javax.swing.GroupLayout dispPanelLayout = new javax.swing.GroupLayout(dispPanel);
-        dispPanel.setLayout(dispPanelLayout);
-        dispPanelLayout.setHorizontalGroup(
-            dispPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dispPanelLayout.createSequentialGroup()
-                .addGap(332, 332, 332)
-                .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(347, 347, 347))
-            .addGroup(dispPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(dispPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(dispPanelLayout.createSequentialGroup()
-                        .addComponent(empSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfEmpSearch)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        dispPanelLayout.setVerticalGroup(
-            dispPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dispPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(dispPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(empSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfEmpSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout hdngPortalLayout = new javax.swing.GroupLayout(hdngPortal);
         hdngPortal.setLayout(hdngPortalLayout);
@@ -346,20 +328,37 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(hdngLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(hdngPortalLayout.createSequentialGroup()
                         .addComponent(fldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dispPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE)))
+                        .addGroup(hdngPortalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(hdngPortalLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(hdngPortalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(hdngPortalLayout.createSequentialGroup()
+                                        .addComponent(empSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(tfEmpSearch))
+                                    .addComponent(jScrollPane1)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hdngPortalLayout.createSequentialGroup()
+                                .addGap(366, 366, 366)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                .addGap(274, 274, 274)))))
                 .addContainerGap())
         );
         hdngPortalLayout.setVerticalGroup(
             hdngPortalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hdngPortalLayout.createSequentialGroup()
                 .addComponent(hdngLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(hdngPortalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(hdngPortalLayout.createSequentialGroup()
-                        .addComponent(dispPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(234, 234, 234)))
+                        .addGroup(hdngPortalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(empSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfEmpSearch))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -381,57 +380,45 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbEmpLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpLevelActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbEmpLevelActionPerformed
+        int row = EmpTable.getSelectedRow();
 
-    private void cbEmpGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbEmpGenderActionPerformed
+        if (row <0){
+            JOptionPane.showMessageDialog(this,
+                "Row not selected! Please select one row",
+                "Select row",
+                JOptionPane.ERROR_MESSAGE);
+
+        } else{
+            DefaultTableModel model  = (DefaultTableModel) EmpTable.getModel();
+            model.removeRow(row);
+
+        }
+        tfEmpName.setText("");
+        tfEmpID.setText("");
+        tfEmpAge.setText("");
+        cbEmpGender.setSelectedIndex(0);
+        //ffEmpDate.setText("");
+        //ffEmpDate.setDateFormatString("");
+        cbEmpLevel.setSelectedIndex(0);
+        tfEmpInfo.setText("");
+        tfEmpPTitle.setText("");
+        tfEmpCell.setText("");
+        tfEmpEmail.setText("");
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tfEmpSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmpSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEmpSearchActionPerformed
-
-    private void tfEmpAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmpAgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfEmpAgeActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int row = EmpTable.getSelectedRow();
-        
-        if (row <0){
-            JOptionPane.showMessageDialog(this,
-                    "Row not selected! Please select one row",
-                    "Select row",
-                    JOptionPane.ERROR_MESSAGE);
-            
-        } else{
-            DefaultTableModel model  = (DefaultTableModel) EmpTable.getModel();
-            model.removeRow(row);
-            
-            }
-            tfEmpName.setText("");
-            tfEmpID.setText("");
-            tfEmpAge.setText("");
-            cbEmpGender.setSelectedIndex(0);
-            //ffEmpDate.setText("");
-            //ffEmpDate.setDateFormatString("");
-            cbEmpLevel.setSelectedIndex(0);
-            tfEmpInfo.setText("");
-            tfEmpPTitle.setText("");
-            tfEmpCell.setText("");
-            tfEmpEmail.setText("");
-            
-    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         String name = tfEmpName.getText();
         String empid = tfEmpID.getText();
         String age = tfEmpAge.getText();
-        String gender = cbEmpGender.getSelectedItem().toString();                    
+        String gender = cbEmpGender.getSelectedItem().toString();
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
         String date = sdf.format(ffEmpDate.getDate());
         //String startdate = TFStartDate.getText();
@@ -442,57 +429,57 @@ public class MainJFrame extends javax.swing.JFrame {
         String email = tfEmpEmail.getText();
         String image = tfImage.getText();
         int length = cellphoneno.length();
-        
-        EmpTable.getColumn("imageicon").setCellRenderer(new myTableCellRenderer());
-  
-             JLabel ImageLabel = new JLabel();        
-             ImageIcon imageicon = new ImageIcon(image);
-             //Resize image to fixed dimension 60*60 (width*height)
-             Image ImageIC = imageicon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-             //Storimng image in JLabel
-             ImageLabel.setIcon(new ImageIcon(ImageIC));
-       
+
+        EmpTable.getColumn("Photo").setCellRenderer(new myTableCellRenderer());
+
+        JLabel ImageLabel = new JLabel();
+        ImageIcon Photo = new ImageIcon(image);
+        //Resize image to fixed dimension 60*60 (width*height)
+        Image ImageIC = Photo.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        //Storimng image in JLabel
+        ImageLabel.setIcon(new ImageIcon(ImageIC));
+
         //Check if fields are empty
-        if (name.isEmpty() || empid.isEmpty()|| age.isEmpty() || gender.isEmpty()|| date.isEmpty() 
-                || level.isEmpty() || teaminfo.isEmpty() || positiontitle.isEmpty() || 
-                cellphoneno.isEmpty() || email.isEmpty() ||image.isEmpty()){
+        if (name.isEmpty() || empid.isEmpty()|| age.isEmpty() || gender.isEmpty()|| date.isEmpty()
+            || level.isEmpty() || teaminfo.isEmpty() || positiontitle.isEmpty() ||
+            cellphoneno.isEmpty() || email.isEmpty() ||image.isEmpty()){
             JOptionPane.showMessageDialog(this,
-                    "Please enter data in all fields!",
-                    "Try Again",
-                    JOptionPane.ERROR_MESSAGE);
+                "Please enter data in all fields!",
+                "Try Again",
+                JOptionPane.ERROR_MESSAGE);
         } else if(length<10){
             JOptionPane.showMessageDialog(this,
-                    "Invalid Number! Please enter 10 digits Phone Number",
-                    "Try Again",
-                    JOptionPane.ERROR_MESSAGE);
-            
+                "Invalid Number! Please enter 10 digits Phone Number",
+                "Try Again",
+                JOptionPane.ERROR_MESSAGE);
+
             //check if email if in valid format
-        } else if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", email))) 
-            {
+        } else if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", email)))
+        {
             JOptionPane.showMessageDialog(null,
-                    "Invalid Email! Please enter a valid EmailID",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-        
+                "Invalid Email! Please enter a valid EmailID",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+
         else {
             DefaultTableModel model = (DefaultTableModel) EmpTable.getModel();
-            model.addRow( new Object[] {name, empid, age, gender, date, level, teaminfo, 
+            model.addRow( new Object[] {name, empid, age, gender, date, level, teaminfo,
                 positiontitle, cellphoneno, email, ImageLabel});
-            
-            tfEmpName.setText("");
-            tfEmpID.setText("");
-            tfEmpAge.setText("");
-            cbEmpGender.setSelectedIndex(0); 
-            ffEmpDate.setCalendar(null);
-            cbEmpLevel.setSelectedIndex(0);
-            tfEmpInfo.setText("");
-            tfEmpPTitle.setText("");
-            tfEmpCell.setText("");
-            tfEmpEmail.setText("");
-            tfImage.setText("");
-          
-             } 
+
+        tfEmpName.setText("");
+        tfEmpID.setText("");
+        tfEmpAge.setText("");
+        cbEmpGender.setSelectedIndex(0);
+        //ffEmpDate.setCalendar(null);
+        cbEmpLevel.setSelectedIndex(0);
+        tfEmpInfo.setText("");
+        tfEmpPTitle.setText("");
+        tfEmpCell.setText("");
+        tfEmpEmail.setText("");
+        tfImage.setText("");
+
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
 
         //for table
@@ -502,110 +489,140 @@ public class MainJFrame extends javax.swing.JFrame {
                 boolean hasFocus, int row, int column){
             
             //Change Image column minimum width and maximum width
-            TableColumn tbl = EmpTable.getColumn("imageicon");
+            TableColumn tbl = EmpTable.getColumn("Photo");
             tbl.setMaxWidth(60);
             
             EmpTable.setRowHeight(60);
             return (Component) value;
         }
     } 
-   
     
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        String email = tfEmpEmail.getText();
-        String cellphoneno = tfEmpCell.getText();
-        // check if number is 10 digit or not
-        int length = cellphoneno.length();
-        if(length<10){
-            JOptionPane.showMessageDialog(this,
-                    "Invalid Number! Please enter 10 digits Phone Number",
-                    "Try Again",
-                    JOptionPane.ERROR_MESSAGE);
-          //check for valid email id format  
-        } else if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", email))) 
-            {
-            JOptionPane.showMessageDialog(null,
-                    "Invalid Email! Please enter a valid EmailID",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            
-            }
-        
         
         //Getter for Table model
         DefaultTableModel model = (DefaultTableModel) EmpTable.getModel();
         if (EmpTable.getSelectedRowCount()==1)  //if only one row is selected then update
         {
             
-                String name = tfEmpName.getText();
-                String empid = tfEmpID.getText();
-                String age = tfEmpAge.getText();
-                String gender = cbEmpGender.getSelectedItem().toString();
-                Date date = ffEmpDate.getDate();
-                String level = cbEmpLevel.getSelectedItem().toString();
-                String teaminfo = tfEmpInfo.getText();
-                String positiontitle = tfEmpPTitle.getText();
-                cellphoneno = tfEmpCell.getText();
-                email = tfEmpEmail.getText();
-                //String image = tfImage.getText();
-                //int length = cellphoneno.length();
-        
-                //Set the updated values in the table
-                model.setValueAt(name, EmpTable.getSelectedRow(),0);
-                model.setValueAt(empid, EmpTable.getSelectedRow(),1);
-                model.setValueAt(age, EmpTable.getSelectedRow(),2);
-                model.setValueAt(gender, EmpTable.getSelectedRow(),3);
-                //model.setValueAt(startdate, EmpTable.getSelectedRow(),4);
-                model.setValueAt(date, EmpTable.getSelectedRow(),4);
-                //int index = EmpTable.getSelectedRow();
-                //date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(index,4));
-                //model.setValueAt(date, EmpTable.getSelectedRow(),4);
-                model.setValueAt(level, EmpTable.getSelectedRow(),5);
-                model.setValueAt(teaminfo, EmpTable.getSelectedRow(),6);
-                model.setValueAt(positiontitle, EmpTable.getSelectedRow(),7);
-                model.setValueAt(cellphoneno, EmpTable.getSelectedRow(),8);
-                model.setValueAt(email, EmpTable.getSelectedRow(),9);
-                //model.setValueAt(image, EmpTable.getSelectedRow(),10);
-                
-                //Display the message for updation
-                JOptionPane.showMessageDialog(this, "Details Updated Successfully!");
-        }
-        
-    else if(EmpTable.getRowCount()==0){
-                //if table is empty
-                JOptionPane.showMessageDialog(this, "Details not available!");
-            } else {
-                //if multiple row is selected istead of one row
-                JOptionPane.showMessageDialog(this, "Please select only one row for updation");
-  
-                
-            }
-    
-            tfEmpName.setText("");
-            tfEmpID.setText("");
-            tfEmpAge.setText("");
-            cbEmpGender.setSelectedIndex(0); 
-            ffEmpDate.setCalendar(null);
-            cbEmpLevel.setSelectedIndex(0);
-            tfEmpInfo.setText("");
-            tfEmpPTitle.setText("");
-            tfEmpCell.setText("");
-            tfEmpEmail.setText("");
-            //tfImage.setText(""); // check 
-   
+            String name = tfEmpName.getText();
+            String empid = tfEmpID.getText();
+            String age = tfEmpAge.getText();
+            String gender = cbEmpGender.getSelectedItem().toString();
+            Date date = ffEmpDate.getDate();
+            String level = cbEmpLevel.getSelectedItem().toString();
+            String teaminfo = tfEmpInfo.getText();
+            String positiontitle = tfEmpPTitle.getText();
+            String cellphoneno = tfEmpCell.getText();
+            String email = tfEmpEmail.getText();
+            int x= 0;
+            //String image = tfImage.getText();
+            //int length = cellphoneno.length();
+            
+       
+        // check if number is 10 digit or not
+        int length = cellphoneno.length();
+        if(length<10){
+            JOptionPane.showMessageDialog(this,
+                "Invalid Number! Please enter 10 digits Phone Number",
+                "Try Again",
+                JOptionPane.ERROR_MESSAGE);
+                x=1;
+            //check for valid email id format
+        } else if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", email)))
+        {
+            JOptionPane.showMessageDialog(null,
+                "Invalid Email! Please enter a valid EmailID",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            x=1;
 
-        
+            } if(x!=1)
+            {
+
+            //Set the updated values in the table
+            model.setValueAt(name, EmpTable.getSelectedRow(),0);
+            model.setValueAt(empid, EmpTable.getSelectedRow(),1);
+            model.setValueAt(age, EmpTable.getSelectedRow(),2);
+            model.setValueAt(gender, EmpTable.getSelectedRow(),3);
+            //model.setValueAt(startdate, EmpTable.getSelectedRow(),4);
+            model.setValueAt(date, EmpTable.getSelectedRow(),4);
+            //int index = EmpTable.getSelectedRow();
+            //date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(index,4));
+            //model.setValueAt(date, EmpTable.getSelectedRow(),4);
+            model.setValueAt(level, EmpTable.getSelectedRow(),5);
+            model.setValueAt(teaminfo, EmpTable.getSelectedRow(),6);
+            model.setValueAt(positiontitle, EmpTable.getSelectedRow(),7);
+            model.setValueAt(cellphoneno, EmpTable.getSelectedRow(),8);
+            model.setValueAt(email, EmpTable.getSelectedRow(),9);
+            //model.setValueAt(image, EmpTable.getSelectedRow(),10);
+
+            //Display the message for updation
+            JOptionPane.showMessageDialog(this, "Details Updated Successfully!");
+        }
+    }
+        else if(EmpTable.getRowCount()==0){
+            //if table is empty
+            JOptionPane.showMessageDialog(this, "Details not available!");
+        } else {
+            //if multiple row is selected istead of one row
+            JOptionPane.showMessageDialog(this, "Please select only one row for updation");
+
+        }
+
+        tfEmpName.setText("");
+        tfEmpID.setText("");
+        tfEmpAge.setText("");
+        cbEmpGender.setSelectedIndex(0);
+        //ffEmpDate.setCalendar(null);
+        cbEmpLevel.setSelectedIndex(0);
+        tfEmpInfo.setText("");
+        tfEmpPTitle.setText("");
+        tfEmpCell.setText("");
+        tfEmpEmail.setText("");
+        //tfImage.setText(""); // check
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    
     private void tfImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfImageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfImageActionPerformed
 
-   //Emp Table is clicked
-    private void EmpTableClick(java.awt.event.MouseEvent evt) {                                      
-        // set data to textfield
+    private void btnImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgActionPerformed
+        // TODO add your handling code here:
+        JFileChooser browseImageFile = new JFileChooser();
+        //Filter the image extensions
+        FileNameExtensionFilter Fnef = new FileNameExtensionFilter("Image",  "jpg", "jpeg", "png");
+        browseImageFile.addChoosableFileFilter(Fnef);
+        int showOpenDialogue = browseImageFile.showOpenDialog(null);
+        if (showOpenDialogue == JFileChooser.APPROVE_OPTION){
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            String selectedImagePath = selectedImageFile.getAbsolutePath();
+            tfImage.setText(selectedImagePath);
+            JOptionPane.showMessageDialog(null, selectedImagePath);
+
+        }
+    }//GEN-LAST:event_btnImgActionPerformed
+
+    private void cbEmpGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbEmpGenderActionPerformed
+
+    private void cbEmpLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpLevelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbEmpLevelActionPerformed
+
+    private void tfEmpAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmpAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfEmpAgeActionPerformed
+
+    private void tfEmpNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmpNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfEmpNameActionPerformed
+
+    private void EmpTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpTableMouseClicked
+        // TODO add your handling code here:
+ // set data to textfield
         
         DefaultTableModel model  = (DefaultTableModel) EmpTable.getModel();
         
@@ -636,8 +653,17 @@ public class MainJFrame extends javax.swing.JFrame {
         //tfImage.setText(tableImage);
        
         
-    } 
+   
+    }//GEN-LAST:event_EmpTableMouseClicked
+
     
+   
+    
+  /*  
+   //Emp Table is clicked
+    private void EmpTableMo(java.awt.event.MouseEvent evt) {                                      
+       
+    */
     
     public void search(String str){
         DefaultTableModel model = (DefaultTableModel)EmpTable.getModel();
@@ -654,36 +680,40 @@ public class MainJFrame extends javax.swing.JFrame {
          
     }  
     
-    private void btnImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgActionPerformed
-        // TODO add your handling code here:
-        JFileChooser browseImageFile = new JFileChooser();
-        //Filter the image extensions
-        FileNameExtensionFilter Fnef = new FileNameExtensionFilter("Image",  "jpg", "jpeg", "png");
-        browseImageFile.addChoosableFileFilter(Fnef);
-        int showOpenDialogue = browseImageFile.showOpenDialog(null);
-        if (showOpenDialogue == JFileChooser.APPROVE_OPTION){
-            File selectedImageFile = browseImageFile.getSelectedFile();
-            String selectedImagePath = selectedImageFile.getAbsolutePath();
-            //image_txt.setText(selectedImagePath);
-            JOptionPane.showMessageDialog(null, selectedImagePath);
 
-        }
-    }//GEN-LAST:event_btnImgActionPerformed
-
-    
-    //Emp name is clicked
-    private void tfEmpNameClick(java.awt.event.KeyEvent evt) {                                  
+    //Emp CellNo is clicked
+    private void tfEmpCellClick(java.awt.event.KeyEvent evt) {                                         
         // TODO add your handling code here:
+        
+     try{
+        String CellNo = tfEmpCell.getText();
+        int length = CellNo.length();
         char c = evt.getKeyChar();
         
-        if(Character.isLetter(c) || Character.isWhitespace(c )|| Character.isISOControl(c)){
-            tfEmpName.setEditable(true);
-        } else {
-            tfEmpName.setEditable(false);
+        //checks for number 0 to 1
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            ///checks if length not more than 10 digit
+            if(length<10){
+                tfEmpCell.setEditable(true);
+                
+            } else{
+                tfEmpCell.setEditable(false);
+            }
+        }   else{
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                tfEmpCell.setEditable(true);
+            } else{
+                tfEmpCell.setEditable(false);
+            }
         }
-    }
-    
-    //Emp age is clicked
+       }
+       catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        } 
+        
+    }  
+ 
+        //Emp age is clicked
     private void tfEmpAgeClick(java.awt.event.KeyEvent evt) {                                 
         // TODO add your handling code here:
         String CellNo = tfEmpAge.getText();
@@ -708,37 +738,18 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }
     
-    //Emp CellNo is clicked
-    private void tfEmpCellClick(java.awt.event.KeyEvent evt) {                                         
-        // TODO add your handling code here:
         
-     try{
-        String CellNo = tfEmpCell.getText();
-        int length = CellNo.length();
+    //Emp name is clicked
+    private void tfEmpNameClick(java.awt.event.KeyEvent evt) {                                  
+        // TODO add your handling code here:
         char c = evt.getKeyChar();
         
-        //checks for number 0 to 1
-        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
-            ///checks if length not more than 10 digit
-            if(length<10){
-                tfEmpCell.setEditable(true);
-                
-            } else{
-                tfEmpCell.setEditable(false);
-            }
-        }else   {
-            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
-                tfEmpCell.setEditable(true);
-            } else{
-                tfEmpCell.setEditable(false);
-            }
+        if(Character.isLetter(c) || Character.isWhitespace(c )|| Character.isISOControl(c)){
+            tfEmpName.setEditable(true);
+        } else {
+            tfEmpName.setEditable(false);
         }
-       }
-       catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-        } 
-        
-    }  
+    }
     
     
     /**
@@ -785,17 +796,16 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cbEmpGender;
     private javax.swing.JComboBox<String> cbEmpLevel;
-    private javax.swing.JPanel dispPanel;
     private javax.swing.JLabel empAge;
     private javax.swing.JLabel empDate;
     private javax.swing.JLabel empEmail;
     private javax.swing.JLabel empGender;
-    private javax.swing.JLabel empID;
     private javax.swing.JLabel empInfo;
     private javax.swing.JLabel empLevel;
     private javax.swing.JLabel empName;
     private javax.swing.JLabel empPTitle;
     private javax.swing.JLabel empSearch;
+    private javax.swing.JLabel employeeID;
     private com.toedter.calendar.JDateChooser ffEmpDate;
     private javax.swing.JPanel fldPanel;
     private javax.swing.JLabel hdngLabel;
