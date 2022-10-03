@@ -128,15 +128,31 @@ public class MainJFrame extends javax.swing.JFrame {
         empEmail.setFont(new java.awt.Font("Charter", 3, 12)); // NOI18N
         empEmail.setText("Email Address");
 
+        tfEmpCell.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfEmpCellKeyPressed(evt);
+            }
+        });
+
         tfEmpName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfEmpNameActionPerformed(evt);
+            }
+        });
+        tfEmpName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfEmpNameKeyPressed(evt);
             }
         });
 
         tfEmpAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfEmpAgeActionPerformed(evt);
+            }
+        });
+        tfEmpAge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfEmpAgeKeyPressed(evt);
             }
         });
 
@@ -306,6 +322,11 @@ public class MainJFrame extends javax.swing.JFrame {
         tfEmpSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfEmpSearchActionPerformed(evt);
+            }
+        });
+        tfEmpSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfEmpSearchKeyReleased(evt);
             }
         });
 
@@ -619,7 +640,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void tfEmpNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmpNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEmpNameActionPerformed
-
+//Emp Table is clicked
     private void EmpTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpTableMouseClicked
         // TODO add your handling code here:
  // set data to textfield
@@ -656,36 +677,24 @@ public class MainJFrame extends javax.swing.JFrame {
    
     }//GEN-LAST:event_EmpTableMouseClicked
 
-    
-   
-    
-  /*  
-   //Emp Table is clicked
-    private void EmpTableMo(java.awt.event.MouseEvent evt) {                                      
-       
-    */
-    
-    public void search(String str){
+     public void search(String str){
         DefaultTableModel model = (DefaultTableModel)EmpTable.getModel();
          TableRowSorter<DefaultTableModel> trs = new TableRowSorter<DefaultTableModel>(model);
          EmpTable.setRowSorter(trs);
          trs.setRowFilter(RowFilter.regexFilter(str));
     }
     
-     
-    private void tfEmpSearchKeyReleased(java.awt.event.KeyEvent evt) {                                     
-         // TODO add your handling code here:
+    
+    private void tfEmpSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmpSearchKeyReleased
+        // TODO add your handling code here:
          String search = tfEmpSearch.getText();
          search(search);
-         
-    }  
-    
+    }//GEN-LAST:event_tfEmpSearchKeyReleased
 
     //Emp CellNo is clicked
-    private void tfEmpCellClick(java.awt.event.KeyEvent evt) {                                         
+    private void tfEmpCellKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmpCellKeyPressed
         // TODO add your handling code here:
-        
-     try{
+ try{
         String CellNo = tfEmpCell.getText();
         int length = CellNo.length();
         char c = evt.getKeyChar();
@@ -710,11 +719,11 @@ public class MainJFrame extends javax.swing.JFrame {
        catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         } 
-        
-    }  
- 
-        //Emp age is clicked
-    private void tfEmpAgeClick(java.awt.event.KeyEvent evt) {                                 
+    }//GEN-LAST:event_tfEmpCellKeyPressed
+
+    //Emp age is clicked
+    private void tfEmpAgeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmpAgeKeyPressed
+    
         // TODO add your handling code here:
         String CellNo = tfEmpAge.getText();
         int length = CellNo.length();
@@ -736,11 +745,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 tfEmpAge.setEditable(false);
             }
         }
-    }
-    
-        
+    }//GEN-LAST:event_tfEmpAgeKeyPressed
+
     //Emp name is clicked
-    private void tfEmpNameClick(java.awt.event.KeyEvent evt) {                                  
+    private void tfEmpNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmpNameKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         
@@ -749,8 +757,10 @@ public class MainJFrame extends javax.swing.JFrame {
         } else {
             tfEmpName.setEditable(false);
         }
-    }
+    }//GEN-LAST:event_tfEmpNameKeyPressed
+
     
+  
     
     /**
      * @param args the command line arguments
