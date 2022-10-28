@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.EncounterHistory;
+
 /**
  *
  * @author akshitabarot
@@ -13,8 +15,13 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    
+    EncounterHistory encounterHistory;
+    
     public MainJFrame() {
         initComponents();
+        
+        encounterHistory = new EncounterHistory();
     }
 
     /**
@@ -26,21 +33,129 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnCommunityAdmin = new javax.swing.JButton();
+        btnHospitalAdmin = new javax.swing.JButton();
+        btnDoctors = new javax.swing.JButton();
+        btnSystemAdmin3 = new javax.swing.JButton();
+        btnPatients = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 1000));
+
+        btnCommunityAdmin.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnCommunityAdmin.setForeground(new java.awt.Color(204, 0, 0));
+        btnCommunityAdmin.setText("Community Admin");
+        btnCommunityAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCommunityAdminActionPerformed(evt);
+            }
+        });
+
+        btnHospitalAdmin.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnHospitalAdmin.setForeground(new java.awt.Color(204, 0, 0));
+        btnHospitalAdmin.setText("Hospital Admin");
+        btnHospitalAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHospitalAdminActionPerformed(evt);
+            }
+        });
+
+        btnDoctors.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnDoctors.setForeground(new java.awt.Color(204, 0, 0));
+        btnDoctors.setText("Doctors");
+        btnDoctors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoctorsActionPerformed(evt);
+            }
+        });
+
+        btnSystemAdmin3.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnSystemAdmin3.setForeground(new java.awt.Color(204, 0, 0));
+        btnSystemAdmin3.setText("System Admin");
+        btnSystemAdmin3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSystemAdmin3ActionPerformed(evt);
+            }
+        });
+
+        btnPatients.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnPatients.setForeground(new java.awt.Color(204, 0, 0));
+        btnPatients.setText("Patients");
+        btnPatients.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatientsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(btnSystemAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCommunityAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(btnHospitalAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(btnDoctors, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(btnPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCommunityAdmin, btnDoctors, btnHospitalAdmin, btnPatients, btnSystemAdmin3});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(576, 576, 576)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPatients)
+                    .addComponent(btnDoctors)
+                    .addComponent(btnHospitalAdmin)
+                    .addComponent(btnCommunityAdmin)
+                    .addComponent(btnSystemAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(231, 231, 231))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCommunityAdmin, btnDoctors, btnHospitalAdmin, btnPatients, btnSystemAdmin3});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCommunityAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommunityAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCommunityAdminActionPerformed
+
+    private void btnHospitalAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospitalAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHospitalAdminActionPerformed
+
+    private void btnDoctorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDoctorsActionPerformed
+
+    private void btnSystemAdmin3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemAdmin3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSystemAdmin3ActionPerformed
+
+    private void btnPatientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPatientsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +193,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCommunityAdmin;
+    private javax.swing.JButton btnDoctors;
+    private javax.swing.JButton btnHospitalAdmin;
+    private javax.swing.JButton btnPatients;
+    private javax.swing.JButton btnSystemAdmin3;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
