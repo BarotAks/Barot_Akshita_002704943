@@ -33,11 +33,11 @@ public class DocFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnPAppointment.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnPAppointment.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnPAppointment.setForeground(new java.awt.Color(204, 0, 0));
         btnPAppointment.setText("Appointments");
 
-        btnPHistory.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnPHistory.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnPHistory.setForeground(new java.awt.Color(204, 0, 0));
         btnPHistory.setText("Patient History");
         btnPHistory.addActionListener(new java.awt.event.ActionListener() {
