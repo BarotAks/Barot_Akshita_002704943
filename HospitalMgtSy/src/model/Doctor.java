@@ -17,7 +17,7 @@ public class Doctor extends Person {
     
     private String doctorID;
     private String department;
-    private String joiningDate;
+    private Date joiningDate;
 
     public String getDoctorID() {
         return doctorID;
@@ -35,26 +35,28 @@ public class Doctor extends Person {
         this.department = deptartment;
     }
 
-    public String getJoiningDate() {
+    public Date getJoiningDate() {
         return joiningDate;
     }
 
-    public void setJoiningDate(String joiningDate) {
+    public void setJoiningDate(Date joiningDate) {
         this.joiningDate = joiningDate;
     }
-    
-    public String toString(){
-        return doctorID;
-    }
 
-    public void setEmailAdd(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setJoiningDate(Date doj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
    
-   
+    }
     
-}
+//    public String toString(){
+//        return doctorID;
+//    }
+//
+//    public void setEmailAdd(String email) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
+//
+//    public void setJoiningDate(Date doj) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
+//   
+   
+    //}

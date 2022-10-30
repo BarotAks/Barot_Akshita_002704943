@@ -4,6 +4,21 @@
  */
 package ui;
 
+import java.awt.event.KeyEvent;
+import java.util.Date;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.City;
+import model.Community;
+import model.Doctor;
+import model.DoctorDirectory;
+import model.HospitalDirectory;
+import model.House;
+import model.PatientDirectory;
+
 /**
  *
  * @author akshitabarot
@@ -17,6 +32,20 @@ public class VDocDetails extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+    DoctorDirectory DocDirectory;
+    HospitalDirectory HospDirectory;
+    PatientDirectory PatDirectory;
+    
+    
+    VDocDetails(DoctorDirectory DocDirectory, HospitalDirectory HospDirectory, PatientDirectory PatDirectory) {
+        initComponents();
+        this.DocDirectory = DocDirectory;
+        this.HospDirectory = HospDirectory;
+         this.PatDirectory = PatDirectory;
+        populateTable();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,36 +57,46 @@ public class VDocDetails extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        btnDLogout2 = new javax.swing.JButton();
+        tfSearchDoc = new javax.swing.JTextField();
+        btnDeleteDoc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableDoc = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jDocID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jFNameDoc = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jLNameDoc = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jAgeDoc = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        jGenderDoc = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jBirthdateDoc = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jDepartmentDoc = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jBGroupDoc = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        jAddressDoc = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jCityDoc = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jPhoneNoDoc = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        btnDLogout1 = new javax.swing.JButton();
+        jJoiningDateDoc = new com.toedter.calendar.JDateChooser();
+        btnBackDoc = new javax.swing.JButton();
+        btnViewDoc = new javax.swing.JButton();
+        btnUpdateDoc = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jEmailDoc = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jPincodeDoc = new javax.swing.JTextField();
+        tfCommunityDoc = new javax.swing.JLabel();
+        jCommunityDoc = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jCountryDoc = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,42 +109,52 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel7.setText("SEARCH");
         jLabel7.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(30, 490, 150, 40);
+        jLabel7.setBounds(40, 520, 150, 40);
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        tfSearchDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                tfSearchDocActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField3);
-        jTextField3.setBounds(220, 490, 670, 40);
-
-        btnDLogout2.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
-        btnDLogout2.setForeground(new java.awt.Color(204, 0, 0));
-        btnDLogout2.setText("VIEW");
-        btnDLogout2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDLogout2ActionPerformed(evt);
+        tfSearchDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfSearchDocKeyReleased(evt);
             }
         });
-        jPanel2.add(btnDLogout2);
-        btnDLogout2.setBounds(260, 830, 130, 30);
+        jPanel2.add(tfSearchDoc);
+        tfSearchDoc.setBounds(230, 520, 740, 40);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        btnDeleteDoc.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnDeleteDoc.setForeground(new java.awt.Color(204, 0, 0));
+        btnDeleteDoc.setText("DELETE");
+        btnDeleteDoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteDocMouseClicked(evt);
+            }
+        });
+        btnDeleteDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteDocActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnDeleteDoc);
+        btnDeleteDoc.setBounds(550, 840, 130, 30);
+
+        jTableDoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DocID", "FirstName", "LastName", "Age", "Gender", "DOB", "Department", "BloodGrp", "Address", "City", "PhoneNo", "DOJ"
+                "DocID", "FirstName", "LastName", "Age", "Gender", "DOB", "Address", "City", "Country", "Department", "BloodGrp", "PhoneNo", "DOJ", "Email", "Pincode", "Community"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableDoc);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 560, 940, 220);
+        jScrollPane1.setBounds(30, 590, 940, 220);
 
         jLabel3.setFont(new java.awt.Font("Charter", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 0, 0));
@@ -121,15 +170,15 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel6.setText("DOCTOR'S ID");
         jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(30, 100, 140, 30);
+        jLabel6.setBounds(520, 90, 140, 30);
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jDocID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jDocIDActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField6);
-        jTextField6.setBounds(220, 100, 220, 30);
+        jPanel2.add(jDocID);
+        jDocID.setBounds(720, 90, 230, 30);
 
         jLabel5.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 0, 0));
@@ -137,15 +186,20 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel5.setText("FIRST NAME");
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(30, 160, 140, 30);
+        jLabel5.setBounds(40, 90, 140, 30);
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jFNameDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jFNameDocActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2);
-        jTextField2.setBounds(220, 160, 220, 30);
+        jFNameDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFNameDocKeyPressed(evt);
+            }
+        });
+        jPanel2.add(jFNameDoc);
+        jFNameDoc.setBounds(230, 90, 220, 30);
 
         jLabel2.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
@@ -153,15 +207,20 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel2.setText("LAST NAME");
         jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(30, 220, 140, 30);
+        jLabel2.setBounds(40, 150, 140, 30);
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jLNameDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jLNameDocActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField7);
-        jTextField7.setBounds(220, 220, 220, 30);
+        jLNameDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLNameDocKeyPressed(evt);
+            }
+        });
+        jPanel2.add(jLNameDoc);
+        jLNameDoc.setBounds(230, 150, 220, 30);
 
         jLabel10.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 0, 0));
@@ -169,15 +228,20 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel10.setText("AGE");
         jLabel10.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(30, 280, 140, 30);
+        jLabel10.setBounds(40, 200, 140, 30);
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jAgeDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jAgeDocActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField8);
-        jTextField8.setBounds(220, 280, 220, 30);
+        jAgeDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jAgeDocKeyPressed(evt);
+            }
+        });
+        jPanel2.add(jAgeDoc);
+        jAgeDoc.setBounds(230, 200, 220, 30);
 
         jLabel15.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(204, 0, 0));
@@ -185,11 +249,11 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel15.setText("GENDER");
         jLabel15.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel15);
-        jLabel15.setBounds(30, 350, 140, 30);
+        jLabel15.setBounds(40, 260, 140, 30);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE", "OTHERS" }));
-        jPanel2.add(jComboBox3);
-        jComboBox3.setBounds(220, 350, 220, 30);
+        jGenderDoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE", "OTHERS" }));
+        jPanel2.add(jGenderDoc);
+        jGenderDoc.setBounds(230, 260, 220, 30);
 
         jLabel4.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 0, 0));
@@ -197,9 +261,9 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel4.setText("DATE OF BIRTH");
         jLabel4.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(30, 420, 140, 30);
-        jPanel2.add(jDateChooser1);
-        jDateChooser1.setBounds(220, 420, 220, 30);
+        jLabel4.setBounds(40, 310, 140, 30);
+        jPanel2.add(jBirthdateDoc);
+        jBirthdateDoc.setBounds(230, 310, 220, 30);
 
         jLabel8.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 0, 0));
@@ -207,11 +271,11 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel8.setText("DEPARTMENT");
         jLabel8.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(520, 100, 150, 30);
+        jLabel8.setBounds(520, 150, 150, 30);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GENERAL SURGERY", "MEDICINE", "PAEDIATRICS", "ENT", "DENTAL", "GYN/OB", "CARDIOLOGY", "NEUROLOGY" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(720, 100, 230, 30);
+        jDepartmentDoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GENERAL SURGERY", "MEDICINE", "PAEDIATRICS", "ENT", "DENTAL", "GYN/OB", "CARDIOLOGY", "NEUROLOGY" }));
+        jPanel2.add(jDepartmentDoc);
+        jDepartmentDoc.setBounds(720, 150, 230, 30);
 
         jLabel11.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 0, 0));
@@ -219,15 +283,15 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel11.setText("BLOOD GROUP");
         jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(520, 160, 150, 30);
+        jLabel11.setBounds(520, 200, 150, 30);
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jBGroupDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jBGroupDocActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField4);
-        jTextField4.setBounds(720, 160, 230, 30);
+        jPanel2.add(jBGroupDoc);
+        jBGroupDoc.setBounds(720, 200, 230, 30);
 
         jLabel16.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 0, 0));
@@ -235,15 +299,15 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel16.setText("ADDRESS");
         jLabel16.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel16);
-        jLabel16.setBounds(520, 220, 150, 30);
+        jLabel16.setBounds(40, 360, 140, 30);
 
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        jAddressDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                jAddressDocActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField9);
-        jTextField9.setBounds(720, 220, 230, 30);
+        jPanel2.add(jAddressDoc);
+        jAddressDoc.setBounds(230, 360, 220, 30);
 
         jLabel9.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
@@ -251,15 +315,15 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel9.setText("CITY ");
         jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(520, 280, 150, 30);
+        jLabel9.setBounds(40, 420, 140, 30);
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jCityDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jCityDocActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField5);
-        jTextField5.setBounds(720, 280, 230, 30);
+        jPanel2.add(jCityDoc);
+        jCityDoc.setBounds(230, 420, 220, 30);
 
         jLabel12.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 0, 0));
@@ -267,15 +331,20 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel12.setText("PHONE NUMBER");
         jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel12);
-        jLabel12.setBounds(520, 350, 150, 30);
+        jLabel12.setBounds(520, 260, 150, 30);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jPhoneNoDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jPhoneNoDocActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(720, 350, 230, 30);
+        jPhoneNoDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPhoneNoDocKeyPressed(evt);
+            }
+        });
+        jPanel2.add(jPhoneNoDoc);
+        jPhoneNoDoc.setBounds(720, 250, 230, 30);
 
         jLabel13.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(204, 0, 0));
@@ -283,22 +352,123 @@ public class VDocDetails extends javax.swing.JFrame {
         jLabel13.setText("DATE OF JOINING");
         jLabel13.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(520, 420, 150, 30);
-        jPanel2.add(jDateChooser2);
-        jDateChooser2.setBounds(720, 420, 230, 30);
+        jLabel13.setBounds(520, 310, 150, 30);
+        jPanel2.add(jJoiningDateDoc);
+        jJoiningDateDoc.setBounds(720, 310, 230, 30);
 
-        btnDLogout1.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
-        btnDLogout1.setForeground(new java.awt.Color(204, 0, 0));
-        btnDLogout1.setText("BACK");
-        btnDLogout1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDLogout1ActionPerformed(evt);
+        btnBackDoc.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnBackDoc.setForeground(new java.awt.Color(204, 0, 0));
+        btnBackDoc.setText("BACK");
+        btnBackDoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackDocMouseClicked(evt);
             }
         });
-        jPanel2.add(btnDLogout1);
-        btnDLogout1.setBounds(550, 830, 130, 30);
+        btnBackDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackDocActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBackDoc);
+        btnBackDoc.setBounds(770, 840, 130, 30);
+
+        btnViewDoc.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnViewDoc.setForeground(new java.awt.Color(204, 0, 0));
+        btnViewDoc.setText("VIEW");
+        btnViewDoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnViewDocMouseClicked(evt);
+            }
+        });
+        btnViewDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewDocActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnViewDoc);
+        btnViewDoc.setBounds(120, 840, 130, 30);
+
+        btnUpdateDoc.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnUpdateDoc.setForeground(new java.awt.Color(204, 0, 0));
+        btnUpdateDoc.setText("UPDATE");
+        btnUpdateDoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateDocMouseClicked(evt);
+            }
+        });
+        btnUpdateDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateDocActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnUpdateDoc);
+        btnUpdateDoc.setBounds(350, 840, 130, 30);
+
+        jLabel17.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("EMAIL");
+        jLabel17.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
+        jPanel2.add(jLabel17);
+        jLabel17.setBounds(520, 360, 150, 30);
+
+        jEmailDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEmailDocActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jEmailDoc);
+        jEmailDoc.setBounds(720, 360, 230, 30);
+
+        jLabel18.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("PINCODE");
+        jLabel18.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
+        jPanel2.add(jLabel18);
+        jLabel18.setBounds(520, 420, 150, 30);
+
+        jPincodeDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPincodeDocActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jPincodeDoc);
+        jPincodeDoc.setBounds(720, 420, 230, 30);
+
+        tfCommunityDoc.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
+        tfCommunityDoc.setForeground(new java.awt.Color(204, 0, 0));
+        tfCommunityDoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tfCommunityDoc.setText("COMMUNITY");
+        tfCommunityDoc.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
+        jPanel2.add(tfCommunityDoc);
+        tfCommunityDoc.setBounds(520, 470, 150, 30);
+
+        jCommunityDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCommunityDocActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jCommunityDoc);
+        jCommunityDoc.setBounds(720, 470, 230, 30);
+
+        jLabel19.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("COUNTRY");
+        jLabel19.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
+        jPanel2.add(jLabel19);
+        jLabel19.setBounds(40, 470, 140, 30);
+
+        jCountryDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCountryDocActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jCountryDoc);
+        jCountryDoc.setBounds(230, 470, 220, 30);
         jPanel2.add(jLabel14);
-        jLabel14.setBounds(0, -110, 990, 1120);
+        jLabel14.setBounds(-10, 0, 1010, 1170);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -320,50 +490,359 @@ public class VDocDetails extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void tfSearchDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_tfSearchDocActionPerformed
 
-    private void btnDLogout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDLogout2ActionPerformed
+    private void btnDeleteDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDLogout2ActionPerformed
+        
+        
+    }//GEN-LAST:event_btnDeleteDocActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jDocIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDocIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jDocIDActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jFNameDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFNameDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jFNameDocActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jLNameDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLNameDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jLNameDocActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jAgeDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgeDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jAgeDocActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jBGroupDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGroupDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jBGroupDocActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void jAddressDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddressDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_jAddressDocActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jCityDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCityDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jCityDocActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jPhoneNoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPhoneNoDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jPhoneNoDocActionPerformed
 
-    private void btnDLogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDLogout1ActionPerformed
+    private void btnBackDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDLogout1ActionPerformed
+    }//GEN-LAST:event_btnBackDocActionPerformed
 
+    private void btnViewDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewDocActionPerformed
+
+    private void btnUpdateDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateDocActionPerformed
+
+    private void jEmailDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEmailDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jEmailDocActionPerformed
+
+    private void jPincodeDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPincodeDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPincodeDocActionPerformed
+
+    private void jCommunityDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCommunityDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCommunityDocActionPerformed
+
+    private void jCountryDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCountryDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCountryDocActionPerformed
+
+    private void btnDeleteDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteDocMouseClicked
+        // TODO add your handling code here:
+        
+        int selectedRowIndex = jTableDoc.getSelectedRow();
+        
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select row to delete");
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTableDoc.getModel();
+        Doctor selectedDoc = (Doctor) model.getValueAt(selectedRowIndex, 0);
+        
+        
+        DocDirectory.deleteDoc(selectedDoc);
+        
+        JOptionPane.showMessageDialog(this, "Doctor Details has been deleted");
+        
+        populateTable();
+        
+//        SysAdDoc dda1 = new SysAdDoc(DocDirectory, HospDirectory, PatDirectory);
+//        dda1.setVisible(true);
+//        this.dispose();
+    }//GEN-LAST:event_btnDeleteDocMouseClicked
+
+    private void btnViewDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewDocMouseClicked
+        // TODO add your handling code here:
+        
+        int selectedRowIndex = jTableDoc.getSelectedRow();
+        
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTableDoc.getModel();
+        Doctor selectedDoc = (Doctor) model.getValueAt(selectedRowIndex, 0);
+        
+        jDocID.setText(String.valueOf(selectedDoc.getDoctorID()));  //here String.valueof is used to convert any data type like int to String.
+        //JDocID.setEditable(false);
+        
+        jFNameDoc.setText(String.valueOf(selectedDoc.getfName()));
+        //JFNameDoc.setEditable(false);
+        
+        jLNameDoc.setText(String.valueOf(selectedDoc.getlName()));
+        //JLNameDoc.setEditable(false);
+        
+        jAgeDoc.setText(String.valueOf(selectedDoc.getAge()));
+        //JAgeDoc.setEditable(false);
+        
+        jBGroupDoc.setText(String.valueOf(selectedDoc.getBloodgroup()));
+        //JBGroupDoc.setEditable(false);
+        
+        jGenderDoc.setSelectedItem(String.valueOf(selectedDoc.getGender())); 
+        //JGenderDoc.setEditable(false);
+        
+        jDepartmentDoc.setSelectedItem(String.valueOf(selectedDoc.getDepartment()));
+        //JDepartmentDoc.setEditable(false);
+        
+        House docHouse = selectedDoc.getHouse();
+        String stAddress = docHouse.getStreetadd();
+        jAddressDoc.setText(String.valueOf(stAddress));
+        
+        
+        jPhoneNoDoc.setText(String.valueOf(selectedDoc.getPhoneNo()));
+        //JPhoneNoDoc.setEditable(false);
+        
+        City docCity = selectedDoc.getCity();
+        String city = docCity.getCity();
+        jCityDoc.setText(String.valueOf(city));
+        
+        //JCityDoc.setText(String.valueOf(selectedDoc.getCity()));
+        //JCityDoc.setEditable(false);
+        jBirthdateDoc.setDate(selectedDoc.getDateOfBirth());
+        
+        jJoiningDateDoc.setDate(selectedDoc.getJoiningDate());
+       // JJoiningDateDoc.setEnabled(false);
+       
+        Community docCommunity = selectedDoc.getCommunity();
+        String docComm = docCommunity.getCommunityName();
+        jCommunityDoc.setText(String.valueOf(docComm));
+        
+        Community docpincode = selectedDoc.getPincode();
+        String docpcode = docpincode.getPincode();
+        jPincodeDoc.setText(String.valueOf(docpcode));
+        
+        City docCountry = selectedDoc.getCountry();
+        String country = docCountry.getCountry();
+        jCountryDoc.setText(String.valueOf(country));
+        
+        jEmailDoc.setText(String.valueOf(selectedDoc.getEmailAddress()));
+    }//GEN-LAST:event_btnViewDocMouseClicked
+
+    private void btnUpdateDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateDocMouseClicked
+        // TODO add your handling code here:
+        
+        DefaultTableModel model = (DefaultTableModel) jTableDoc.getModel();
+        if (jTableDoc.getSelectedRowCount()==1){
+            
+        String docID = jDocID.getText();
+        String fname = jFNameDoc.getText();
+        String lname = jLNameDoc.getText();
+        int age = Integer.parseInt(jAgeDoc.getText());
+        String gender = jGenderDoc.getSelectedItem().toString();
+        String department = jDepartmentDoc.getSelectedItem().toString();
+        String address = jAddressDoc.getText();
+        String country = jCountryDoc.getText();
+        String community = jCommunityDoc.getText();
+        String bloodgroup = jBGroupDoc.getText();
+        String phoneNo = jPhoneNoDoc.getText();
+        String city = jCityDoc.getText();
+        Date JoiningDate = jJoiningDateDoc.getDate();
+        Date BirthDate = jBirthdateDoc.getDate();
+        String pincode = jPincodeDoc.getText();
+        String email = jEmailDoc.getText();
+        int x= 0;
+               //String image = image_txt.getText();
+                //int length = cellphoneno.length();
+           
+         int length = phoneNo.length();
+        if(length<10){
+            JOptionPane.showMessageDialog(this,
+                    "Invalid! Please enter a cell no of 10 digits",
+                    "Try Again",
+                    JOptionPane.ERROR_MESSAGE);
+                    x=1;
+            } else if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", email))) 
+           {
+            JOptionPane.showMessageDialog(null,
+                    "Please enter a valid email!",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    x=1;
+           
+            } if(x!=1){
+               model.setValueAt(docID, jTableDoc.getSelectedRow(),0);
+               model.setValueAt(fname, jTableDoc.getSelectedRow(),1);
+               model.setValueAt(lname, jTableDoc.getSelectedRow(),2);
+               model.setValueAt(age, jTableDoc.getSelectedRow(),3);
+               model.setValueAt(gender, jTableDoc.getSelectedRow(),4);
+               model.setValueAt(BirthDate, jTableDoc.getSelectedRow(),5);
+               model.setValueAt(address, jTableDoc.getSelectedRow(),6);
+               model.setValueAt(city, jTableDoc.getSelectedRow(),7);
+               model.setValueAt(country, jTableDoc.getSelectedRow(),8);
+               model.setValueAt(department, jTableDoc.getSelectedRow(),9);
+               model.setValueAt(bloodgroup, jTableDoc.getSelectedRow(),10);
+               model.setValueAt(phoneNo, jTableDoc.getSelectedRow(),11);
+               model.setValueAt(JoiningDate, jTableDoc.getSelectedRow(),12);
+               model.setValueAt(email, jTableDoc.getSelectedRow(),13);
+               model.setValueAt(pincode, jTableDoc.getSelectedRow(),14);
+               model.setValueAt(community, jTableDoc.getSelectedRow(),15);
+               
+               
+               
+        
+        JOptionPane.showMessageDialog(this, "Update Successfully!");
+            }
+        }else if (jTableDoc.getRowCount()==0){
+                //if table is empty
+                JOptionPane.showMessageDialog(this, "Table is Empty");
+            } else  {
+                //if row is not selected or multiple row is selected
+                JOptionPane.showMessageDialog(this, "Please select a single row for updation!");
+                
+            } 
+        
+            jDocID.setText("");
+            jFNameDoc.setText("");
+            jLNameDoc.setText("");
+            jAgeDoc.setText("");
+            jBGroupDoc.setText("");
+            jGenderDoc.setSelectedIndex(0);
+            jDepartmentDoc.setSelectedIndex(0);
+            jCityDoc.setText("");
+            jAddressDoc.setText("");
+            jPhoneNoDoc.setText("");
+            jPincodeDoc.setText("");
+            jEmailDoc.setText("");
+            jCommunityDoc.setText("");
+            jCountryDoc.setText("");
+           // JJoiningDateDoc.setDate("");
+       
+    
+    }//GEN-LAST:event_btnUpdateDocMouseClicked
+
+    private void tfSearchDocKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSearchDocKeyReleased
+        // TODO add your handling code here:
+        
+        String search = tfSearchDoc.getText();
+        search(search);
+    }//GEN-LAST:event_tfSearchDocKeyReleased
+
+    private void jFNameDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFNameDocKeyPressed
+        // TODO add your handling code here:
+        
+        char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c) || Character.isWhitespace(c )|| Character.isISOControl(c)){
+            jFNameDoc.setEditable(true);
+        } else {
+            jFNameDoc.setEditable(false);
+        }
+    }//GEN-LAST:event_jFNameDocKeyPressed
+
+    private void jLNameDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLNameDocKeyPressed
+        // TODO add your handling code here:
+        
+        char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c) || Character.isWhitespace(c )|| Character.isISOControl(c)){
+            jLNameDoc.setEditable(true);
+        } else {
+            jLNameDoc.setEditable(false);
+        }
+    }//GEN-LAST:event_jLNameDocKeyPressed
+
+    private void jAgeDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jAgeDocKeyPressed
+        // TODO add your handling code here:
+        String CellNumber = jAgeDoc.getText();
+        int length = CellNumber.length();
+        char c = evt.getKeyChar();
+        
+        //check for number 0 to 1
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            //check for length not more than 2 digit
+            if(length<2){
+                jAgeDoc.setEditable(true);
+                
+            } else{
+                jAgeDoc.setEditable(false);
+            }
+        }else{
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                jAgeDoc.setEditable(true);
+            } else{
+                jAgeDoc.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_jAgeDocKeyPressed
+
+    private void jPhoneNoDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPhoneNoDocKeyPressed
+        // TODO add your handling code here:
+        
+        try{
+        String CellNumber = jPhoneNoDoc.getText();
+        int length = CellNumber.length();
+        char c = evt.getKeyChar();
+        
+        //check for number 0 to 9
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            //check for length not more than 10 digit
+            if(length<10){
+                jPhoneNoDoc.setEditable(true);
+                
+            } else{
+                jPhoneNoDoc.setEditable(false);
+            }
+        }else{
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                jPhoneNoDoc.setEditable(true);
+            } else{
+                jPhoneNoDoc.setEditable(false);
+            }
+        }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }//GEN-LAST:event_jPhoneNoDocKeyPressed
+
+    private void btnBackDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackDocMouseClicked
+        // TODO add your handling code here:
+        
+         SysAdDoc dda1 = new SysAdDoc(DocDirectory, HospDirectory, PatDirectory);
+        dda1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackDocMouseClicked
+    
+    public void search(String str){
+        DefaultTableModel model = (DefaultTableModel) jTableDoc.getModel();
+        TableRowSorter<DefaultTableModel> trs  = new TableRowSorter<DefaultTableModel>(model);
+        jTableDoc.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter(str));
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -400,12 +879,24 @@ public class VDocDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDLogout1;
-    private javax.swing.JButton btnDLogout2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JButton btnBackDoc;
+    private javax.swing.JButton btnDeleteDoc;
+    private javax.swing.JButton btnUpdateDoc;
+    private javax.swing.JButton btnViewDoc;
+    private javax.swing.JTextField jAddressDoc;
+    private javax.swing.JTextField jAgeDoc;
+    private javax.swing.JTextField jBGroupDoc;
+    private com.toedter.calendar.JDateChooser jBirthdateDoc;
+    private javax.swing.JTextField jCityDoc;
+    private javax.swing.JTextField jCommunityDoc;
+    private javax.swing.JTextField jCountryDoc;
+    private javax.swing.JComboBox<String> jDepartmentDoc;
+    private javax.swing.JTextField jDocID;
+    private javax.swing.JTextField jEmailDoc;
+    private javax.swing.JTextField jFNameDoc;
+    private javax.swing.JComboBox<String> jGenderDoc;
+    private com.toedter.calendar.JDateChooser jJoiningDateDoc;
+    private javax.swing.JTextField jLNameDoc;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -413,6 +904,9 @@ public class VDocDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -422,16 +916,61 @@ public class VDocDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jPhoneNoDoc;
+    private javax.swing.JTextField jPincodeDoc;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable jTableDoc;
+    private javax.swing.JLabel tfCommunityDoc;
+    private javax.swing.JTextField tfSearchDoc;
     // End of variables declaration//GEN-END:variables
+
+        private void populateTable() {
+       
+        DefaultTableModel model = (DefaultTableModel) jTableDoc.getModel();
+        model.setRowCount(0);
+        
+        for(Doctor dd : DocDirectory.getDoctorDirectory()){
+            
+            Object[] row = new Object[15];
+            row[0] =  dd;
+            row[1] =  dd.getfName();
+            row[2] =  dd.getlName();
+            row[3] =  dd.getAge();
+            row[4] =  dd.getGender();
+            row[5] =  dd.getDateOfBirth();
+            
+            House hd = dd.getHouse();
+            row[6] =  hd.getStreetadd();
+            
+            City cy = dd.getCity();
+            row[7] = cy.getCity();
+            
+            City ctry = dd.getCountry();         
+            row[8] =  ctry.getCountry();
+            
+            row[9] =  dd.getDepartment();
+            
+            row[10] =  dd.getBloodgroup();
+            
+            row[11] = dd.getPhoneNo();
+            row[12] = dd.getJoiningDate();
+            row[13] = dd.getEmailAddress();
+            
+            Community cd = dd.getPincode();
+            row[14] =  cd.getPincode();
+            
+            
+            Community cc = dd.getCommunity();
+            row[15] = cc.getCommunityName();
+           
+            model.addRow(row);
+            
+            
+        }
+        
+
+    }
+
+
+
 }

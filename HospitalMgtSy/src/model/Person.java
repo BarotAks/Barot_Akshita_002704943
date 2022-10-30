@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author akshitabarot
@@ -21,6 +23,8 @@ public class Person {
     private String phoneNo;
     //private House house;
     private City country;
+    private String emailAddress;
+    private Date dateOfBirth;
 
     public String getfName() {
         return fName;
@@ -109,6 +113,22 @@ public class Person {
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     

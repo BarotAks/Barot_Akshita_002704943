@@ -6,8 +6,11 @@ package ui;
 
 import java.awt.event.KeyEvent;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.City;
 import model.Community;
 import model.Doctor;
@@ -128,6 +131,11 @@ public class ADocDetails extends javax.swing.JFrame {
                 tfFnameDocActionPerformed(evt);
             }
         });
+        tfFnameDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfFnameDocKeyReleased(evt);
+            }
+        });
         jPanel1.add(tfFnameDoc);
         tfFnameDoc.setBounds(220, 100, 220, 30);
 
@@ -152,12 +160,22 @@ public class ADocDetails extends javax.swing.JFrame {
                 tfLnameDocActionPerformed(evt);
             }
         });
+        tfLnameDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfLnameDocKeyPressed(evt);
+            }
+        });
         jPanel1.add(tfLnameDoc);
         tfLnameDoc.setBounds(220, 160, 220, 30);
 
         tfAgeDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfAgeDocActionPerformed(evt);
+            }
+        });
+        tfAgeDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfAgeDocKeyPressed(evt);
             }
         });
         jPanel1.add(tfAgeDoc);
@@ -303,6 +321,11 @@ public class ADocDetails extends javax.swing.JFrame {
                 tfPhoneNoDocActionPerformed(evt);
             }
         });
+        tfPhoneNoDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPhoneNoDocKeyPressed(evt);
+            }
+        });
         jPanel1.add(tfPhoneNoDoc);
         tfPhoneNoDoc.setBounds(720, 280, 230, 30);
 
@@ -420,7 +443,8 @@ public class ADocDetails extends javax.swing.JFrame {
 
     private void btnADBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADBackActionPerformed
         // TODO add your handling code here:
-        SysAdDoc SAD = new SysAdDoc(DoctorDirectory);
+        
+        SysAdDoc SAD = new SysAdDoc(DocDirectory, HospDirectory, PatDirectory);
         SAD.setVisible(true);
         
     }//GEN-LAST:event_btnADBackActionPerformed
@@ -547,6 +571,86 @@ public class ADocDetails extends javax.swing.JFrame {
     private void tfCountryDoc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCountryDoc1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCountryDoc1ActionPerformed
+
+    private void tfPhoneNoDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPhoneNoDocKeyPressed
+        // TODO add your handling code here:
+        
+        try{
+            String cellNumber = tfPhoneNoDoc.getText();
+            int length = cellNumber.length();
+            char c = evt.getKeyChar();
+            
+            //checks for number 0 to 9
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            ///checks if length not more than 10 digit
+            if(length<10){
+                tfPhoneNoDoc.setEditable(true);
+                
+            } else{
+                tfPhoneNoDoc.setEditable(false);
+            }
+        }   else{
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                tfPhoneNoDoc.setEditable(true);
+            } else{
+                tfPhoneNoDoc.setEditable(false);
+            }
+        }
+       }
+       catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        } 
+    
+        
+    }//GEN-LAST:event_tfPhoneNoDocKeyPressed
+
+    private void tfAgeDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAgeDocKeyPressed
+        // TODO add your handling code here:
+        
+        String CellNumber = tfAgeDoc.getText();
+        int length = CellNumber.length();
+        char c = evt.getKeyChar();
+        
+        //check for number 0 to 1
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            //check for length not more than 2 digit
+            if(length<2){
+                tfAgeDoc.setEditable(true);
+                
+            } else{
+                tfAgeDoc.setEditable(false);
+            }
+        }else{
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                tfAgeDoc.setEditable(true);
+            } else{
+                tfAgeDoc.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_tfAgeDocKeyPressed
+
+    private void tfFnameDocKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFnameDocKeyReleased
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c) || Character.isWhitespace(c )|| Character.isISOControl(c)){
+            tfFnameDoc.setEditable(true);
+        } else {
+            tfFnameDoc.setEditable(false);
+        }
+    }//GEN-LAST:event_tfFnameDocKeyReleased
+
+    private void tfLnameDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLnameDocKeyPressed
+        // TODO add your handling code here:
+        
+        char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c) || Character.isWhitespace(c )|| Character.isISOControl(c)){
+            tfLnameDoc.setEditable(true);
+        } else {
+            tfLnameDoc.setEditable(false);
+        }
+    }//GEN-LAST:event_tfLnameDocKeyPressed
 
     /**
      * @param args the command line arguments

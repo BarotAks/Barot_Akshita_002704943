@@ -4,6 +4,10 @@
  */
 package ui;
 
+import model.DoctorDirectory;
+import model.HospitalDirectory;
+import model.PatientDirectory;
+
 /**
  *
  * @author akshitabarot
@@ -13,8 +17,24 @@ public class SysAdDoc extends javax.swing.JFrame {
     /**
      * Creates new form SysAdDoc
      */
+    
+    
+    DoctorDirectory DocDirectory;
+    HospitalDirectory HospDirectory;
+    PatientDirectory PatDirectory;
+    
+    
     public SysAdDoc() {
         initComponents();
+    }
+    
+    SysAdDoc(DoctorDirectory DocDirectory, HospitalDirectory HospDirectory, PatientDirectory PatDirectory){
+        initComponents();
+        this.DocDirectory = DocDirectory;
+        this.HospDirectory = HospDirectory;
+        this.PatDirectory = PatDirectory;
+    
+        
     }
 
     /**
@@ -105,6 +125,12 @@ public class SysAdDoc extends javax.swing.JFrame {
 
     private void btnPAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPAppointmentActionPerformed
         // TODO add your handling code here:
+        VDocDetails VDD = new VDocDetails(DocDirectory, HospDirectory, PatDirectory);
+        VDD.setVisible(true);
+        this.dispose();
+        
+    }
+
     }//GEN-LAST:event_btnPAppointmentActionPerformed
 
     /**
