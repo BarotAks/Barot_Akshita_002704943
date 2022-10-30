@@ -37,7 +37,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnCommunityAdmin = new javax.swing.JButton();
         btnHospitalAdmin = new javax.swing.JButton();
         btnDoctors = new javax.swing.JButton();
-        btnSystemAdmin3 = new javax.swing.JButton();
+        btnSystemAdmin = new javax.swing.JButton();
         btnPatients = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -85,16 +85,16 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1.add(btnDoctors);
         btnDoctors.setBounds(660, 580, 180, 50);
 
-        btnSystemAdmin3.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
-        btnSystemAdmin3.setForeground(new java.awt.Color(204, 0, 0));
-        btnSystemAdmin3.setText("System Admin");
-        btnSystemAdmin3.addActionListener(new java.awt.event.ActionListener() {
+        btnSystemAdmin.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
+        btnSystemAdmin.setForeground(new java.awt.Color(204, 0, 0));
+        btnSystemAdmin.setText("System Admin");
+        btnSystemAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSystemAdmin3ActionPerformed(evt);
+                btnSystemAdminActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSystemAdmin3);
-        btnSystemAdmin3.setBounds(23, 576, 168, 54);
+        jPanel1.add(btnSystemAdmin);
+        btnSystemAdmin.setBounds(23, 576, 168, 54);
 
         btnPatients.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnPatients.setForeground(new java.awt.Color(204, 0, 0));
@@ -137,6 +137,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCommunityAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommunityAdminActionPerformed
         // TODO add your handling code here:
+        CommunityAd CA = new CommunityAd();
+        CA.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btnCommunityAdminActionPerformed
 
     private void btnHospitalAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospitalAdminActionPerformed
@@ -145,14 +149,25 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnDoctorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorsActionPerformed
         // TODO add your handling code here:
+        DocLogin DOC = new DocLogin();
+        DOC.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnDoctorsActionPerformed
 
-    private void btnSystemAdmin3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemAdmin3ActionPerformed
+    private void btnSystemAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemAdminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSystemAdmin3ActionPerformed
+        SysAdLogin SAL = new SysAdLogin();
+        SAL.setVisible(true);
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_btnSystemAdminActionPerformed
 
     private void btnPatientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientsActionPerformed
         // TODO add your handling code here:
+        Patient PAT = new Patient();
+        PAT.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPatientsActionPerformed
 
     /**
@@ -195,7 +210,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnDoctors;
     private javax.swing.JButton btnHospitalAdmin;
     private javax.swing.JButton btnPatients;
-    private javax.swing.JButton btnSystemAdmin3;
+    private javax.swing.JButton btnSystemAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

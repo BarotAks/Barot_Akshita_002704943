@@ -4,6 +4,11 @@
  */
 package model;
 
+//import java.util.Date;
+
+import java.util.Date;
+
+
 /**
  *
  * @author akshitabarot
@@ -11,7 +16,7 @@ package model;
 public class Doctor extends Person {
     
     private String doctorID;
-    private String deptartment;
+    private String department;
     private String joiningDate;
 
     public String getDoctorID() {
@@ -22,12 +27,12 @@ public class Doctor extends Person {
         this.doctorID = doctorID;
     }
 
-    public String getDeptartment() {
-        return deptartment;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setDeptartment(String deptartment) {
-        this.deptartment = deptartment;
+    public void setDepartment(String deptartment) {
+        this.department = deptartment;
     }
 
     public String getJoiningDate() {
@@ -38,7 +43,17 @@ public class Doctor extends Person {
         this.joiningDate = joiningDate;
     }
     
+    public String toString(){
+        return doctorID;
+    }
 
+    public void setEmailAdd(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setJoiningDate(Date doj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
    
    
     

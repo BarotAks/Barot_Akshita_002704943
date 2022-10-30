@@ -11,9 +11,8 @@ package model;
 public class House {
     
     private String streetadd;
-    private String country;
+    private Community community;
     private City city;
-    private String pincode;
 
     public String getStreetadd() {
         return streetadd;
@@ -23,12 +22,12 @@ public class House {
         this.streetadd = streetadd;
     }
 
-    public String getCountry() {
-        return country;
+    public Community getCommunity() {
+        return community;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCommunity(Community community) {
+        this.community = community;
     }
 
     public City getCity() {
@@ -39,13 +38,7 @@ public class House {
         this.city = city;
     }
 
-    public String getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
-    }
+    
 
     
     

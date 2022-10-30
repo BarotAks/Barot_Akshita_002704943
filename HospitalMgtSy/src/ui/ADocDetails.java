@@ -4,6 +4,7 @@
  */
 package ui;
 
+import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -11,7 +12,9 @@ import model.City;
 import model.Community;
 import model.Doctor;
 import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.House;
+import model.PatientDirectory;
 
 /**
  *
@@ -22,10 +25,22 @@ public class ADocDetails extends javax.swing.JFrame {
     /**
      * Creates new form ADocDetails
      */
+    
+    DoctorDirectory DocDirectory;
+    HospitalDirectory HospDirectory;
+    PatientDirectory PatDirectory;
+    
+    
     public ADocDetails() {
         initComponents();
     }
 
+    ADocDetails(DoctorDirectory DocDirectory, HospitalDirectory HospDirectory, PatientDirectory PatDirectory){
+        initComponents();
+        this.DocDirectory = DocDirectory;
+        this.HospDirectory = HospDirectory;
+        this.PatDirectory = PatDirectory;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -228,7 +243,7 @@ public class ADocDetails extends javax.swing.JFrame {
             }
         });
         jPanel1.add(tfCityDoc);
-        tfCityDoc.setBounds(230, 490, 230, 30);
+        tfCityDoc.setBounds(220, 490, 230, 30);
 
         jLabel12.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 0, 0));
@@ -321,7 +336,7 @@ public class ADocDetails extends javax.swing.JFrame {
             }
         });
         jPanel1.add(tfCountryDoc);
-        tfCountryDoc.setBounds(230, 550, 230, 30);
+        tfCountryDoc.setBounds(220, 550, 230, 30);
 
         tfCommunityDoc.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         tfCommunityDoc.setForeground(new java.awt.Color(204, 0, 0));
@@ -405,6 +420,9 @@ public class ADocDetails extends javax.swing.JFrame {
 
     private void btnADBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADBackActionPerformed
         // TODO add your handling code here:
+        SysAdDoc SAD = new SysAdDoc(DoctorDirectory);
+        SAD.setVisible(true);
+        
     }//GEN-LAST:event_btnADBackActionPerformed
 
     private void tfPhoneNoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPhoneNoDocActionPerformed
@@ -442,6 +460,10 @@ public class ADocDetails extends javax.swing.JFrame {
         String pincode = tfPincodeDoc.getText();
         
         
+        
+       
+        
+        
         if (gender.isEmpty() || /*dob.isEmpty() || */ fname.isEmpty() || lname.isEmpty() || /*age.isEmpty()||*/   add.isEmpty() 
                 || city.isEmpty() || country.isEmpty() || docID.isEmpty() || department.isEmpty() || bloodgroup.isEmpty() || 
               /*  phoneNo.isEmpty() ||  doj.isEmpty() ||*/ email.isEmpty() || pincode.isEmpty()) {
@@ -450,9 +472,10 @@ public class ADocDetails extends javax.swing.JFrame {
                     "Try Again",
                     JOptionPane.ERROR_MESSAGE);
         }
-        else if (!(Pattern.matches("^[a-zA-Z0-9] +[@]{1} +[a-zA-Z0-9]+[.]{1} +[a-zA-Z0-9]+$^")))
+        else if (!(Pattern.matches("^[a-zA-Z0-9] +[@]{1} +[a-zA-Z0-9]+[.]{1} +[a-zA-Z0-9]+$^", email)))
                 {
-                    JOptionPane.showMessageDialog(null, "Kindly enter a valid Email!",
+                    JOptionPane.showMessageDialog(null, 
+                            "Kindly enter a valid Email!",
                             "Invalid!",
                             JOptionPane.ERROR_MESSAGE);
                   
@@ -460,19 +483,19 @@ public class ADocDetails extends javax.swing.JFrame {
         }
         
         else {
-            Doctor dd = DoctorDirectory.addNewDoctor();
+            Doctor dd = DocDirectory.addNewDoctor();
             dd.setfName(fname);
             dd.setlName(lname);
             dd.setDoctorID(docID);
             dd.setDepartment(department);
-            dd.setJoiningDate(doj);
+            //dd.setJoiningDate(doj);
             dd.setBloodgroup(bloodgroup);
             dd.setGender(gender);
             dd.setAge(age);
             dd.setPhoneNo(phoneNo);
             
             House docHouse = new House();
-            docHouse.setstreetadd(add);
+            docHouse.setStreetadd(add);
             dd.setHouse(docHouse);
             
             City docCity = new City();
@@ -490,6 +513,29 @@ public class ADocDetails extends javax.swing.JFrame {
             City docCountry = new City();
             docCountry.setCountry(country);
             dd.setCountry(docCountry);
+            
+            dd.setJoiningDate(doj);
+            dd.setEmailAdd(email);
+            
+            
+            JOptionPane.showMessageDialog(this, "New Record added!");
+            
+            tfFnameDoc.setText("");
+            tfLnameDoc.setText("");
+            tfAgeDoc.setText("");
+            tfBloodgrpDoc.setText("");
+            tfAddDoc.setText("");
+            tfCityDoc.setText("");
+            tfCommunityDoc.setText("");
+            tfCountryDoc.setText("");
+            tfDocID.setText("");
+            tfEmailDoc.setText("");
+            tfPhoneNoDoc.setText("");
+            tfPincodeDoc.setText("");
+            cbGenderDoc.setSelectedIndex(0);
+            cbDept.setSelectedIndex(0);
+            
+           
             
             
             

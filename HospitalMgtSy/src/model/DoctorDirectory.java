@@ -12,27 +12,32 @@ import java.util.ArrayList;
  */
 public class DoctorDirectory {
     
-    private ArrayList<Doctor> DoctorDirectory;
+    private ArrayList<Doctor> DocDirectory;
     
     public DoctorDirectory(){
-        this.DoctorDirectory = new ArrayList<Doctor>();
+        this.DocDirectory = new ArrayList<Doctor>();
         
     }
     
     public ArrayList<Doctor> getDoctorDirectory(){
-        return DoctorDirectory;
+        return DocDirectory;
     }
     
     public void setDoctorDirectory(ArrayList<Doctor> DoctorDirectory) {
-        this.DoctorDirectory = DoctorDirectory;
+        this.DocDirectory = DoctorDirectory;
         
     }
     
     public Doctor addNewDoctor(){
         Doctor newdata = new Doctor();
-        DoctorDirectory.add(newdata);
+        DocDirectory.add(newdata);
         return newdata;
     
-}
+    }
+    
+    public void deleteDoc(Doctor dd){
+        DocDirectory.remove(dd);
+    }
+    
     
 }

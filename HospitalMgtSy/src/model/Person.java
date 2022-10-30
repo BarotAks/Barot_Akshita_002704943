@@ -14,12 +14,12 @@ public class Person {
     private int age;
     private String gender;
     private String bloodgroup;
-    private House address;
+    private House house;
     private City city;
     private Community community;
     private Community pincode;
     private String phoneNo;
-    private House house;
+    //private House house;
     private City country;
 
     public String getfName() {
@@ -62,12 +62,12 @@ public class Person {
         this.bloodgroup = bloodgroup;
     }
 
-    public House getAddress() {
-        return address;
+    public House getHouse() {
+        return house;
     }
 
-    public void setAddress(House address) {
-        this.address = address;
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public City getCity() {
@@ -94,14 +94,7 @@ public class Person {
         this.pincode = pincode;
     }
 
-    public House getHouse() {
-        return house;
-    }
-
-    public void setHouse(House house) {
-        this.house = house;
-    }
-
+  
     public City getCountry() {
         return country;
     }
@@ -125,4 +118,4 @@ public class Person {
     
     
     
-}
+
