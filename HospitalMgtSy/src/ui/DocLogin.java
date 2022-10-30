@@ -91,7 +91,7 @@ public class DocLogin extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(240, 430, 430, 360);
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(-230, 0, 1440, 1290);
+        jLabel5.setBounds(-210, -70, 1440, 1290);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

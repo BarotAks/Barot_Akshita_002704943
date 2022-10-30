@@ -8,12 +8,12 @@ package ui;
  *
  * @author akshitabarot
  */
-public class DocFrame extends javax.swing.JFrame {
+public class SysAdDoc extends javax.swing.JFrame {
 
     /**
-     * Creates new form DocFrame
+     * Creates new form SysAdDoc
      */
-    public DocFrame() {
+    public SysAdDoc() {
         initComponents();
     }
 
@@ -30,51 +30,65 @@ public class DocFrame extends javax.swing.JFrame {
         btnPAppointment = new javax.swing.JButton();
         btnPHistory = new javax.swing.JButton();
         btnDLogout = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnPHistory1 = new javax.swing.JButton();
+        btnPAppointment1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnPAppointment.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnPAppointment.setForeground(new java.awt.Color(204, 0, 0));
-        btnPAppointment.setText("Appointments");
-        jPanel1.add(btnPAppointment);
-        btnPAppointment.setBounds(97, 214, 230, 68);
+        btnPAppointment.setText("View Doctor");
+        btnPAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPAppointmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 150, 70));
 
         btnPHistory.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnPHistory.setForeground(new java.awt.Color(204, 0, 0));
-        btnPHistory.setText("Patient History");
+        btnPHistory.setText("Update Doctor");
         btnPHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPHistoryActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPHistory);
-        btnPHistory.setBounds(97, 354, 230, 68);
+        jPanel1.add(btnPHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 70));
 
         btnDLogout.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
         btnDLogout.setForeground(new java.awt.Color(204, 0, 0));
-        btnDLogout.setText("LOG OUT");
-        jPanel1.add(btnDLogout);
-        btnDLogout.setBounds(137, 486, 155, 37);
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 990, 990);
+        btnDLogout.setText("BACK");
+        jPanel1.add(btnDLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 194, 90, 30));
+
+        btnPHistory1.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
+        btnPHistory1.setForeground(new java.awt.Color(204, 0, 0));
+        btnPHistory1.setText("Add Doctor");
+        btnPHistory1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPHistory1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPHistory1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 140, 70));
+
+        btnPAppointment1.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
+        btnPAppointment1.setForeground(new java.awt.Color(204, 0, 0));
+        btnPAppointment1.setText("Search Doctor");
+        jPanel1.add(btnPAppointment1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -84,6 +98,14 @@ public class DocFrame extends javax.swing.JFrame {
     private void btnPHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPHistoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPHistoryActionPerformed
+
+    private void btnPHistory1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPHistory1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPHistory1ActionPerformed
+
+    private void btnPAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPAppointmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPAppointmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,20 +124,20 @@ public class DocFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DocFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAdDoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DocFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAdDoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DocFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAdDoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DocFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAdDoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DocFrame().setVisible(true);
+                new SysAdDoc().setVisible(true);
             }
         });
     }
@@ -123,8 +145,9 @@ public class DocFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDLogout;
     private javax.swing.JButton btnPAppointment;
+    private javax.swing.JButton btnPAppointment1;
     private javax.swing.JButton btnPHistory;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnPHistory1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

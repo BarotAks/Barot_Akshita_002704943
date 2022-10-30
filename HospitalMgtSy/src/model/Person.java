@@ -9,28 +9,33 @@ package model;
  * @author akshitabarot
  */
 public class Person {
-    private String personId;
-    private String name;
+    private String fName;
+    private String lName;
     private int age;
     private String gender;
+    private String bloodgroup;
     private House address;
-    private String phoneNumber;
-    private String emailAddress;
+    private City city;
+    private Community community;
+    private Community pincode;
+    private String phoneNo;
+    private House house;
+    private City country;
 
-    public String getPersonId() {
-        return personId;
+    public String getfName() {
+        return fName;
     }
 
-    public void setPersonId(String personId) {
-        this.personId = personId;
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
-    public String getName() {
-        return name;
+    public String getlName() {
+        return lName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setlName(String lName) {
+        this.lName = lName;
     }
 
     public int getAge() {
@@ -49,6 +54,14 @@ public class Person {
         this.gender = gender;
     }
 
+    public String getBloodgroup() {
+        return bloodgroup;
+    }
+
+    public void setBloodgroup(String bloodgroup) {
+        this.bloodgroup = bloodgroup;
+    }
+
     public House getAddress() {
         return address;
     }
@@ -57,22 +70,58 @@ public class Person {
         this.address = address;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public City getCity() {
+        return city;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setCity(City city) {
+        this.city = city;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public Community getCommunity() {
+        return community;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setCommunity(Community community) {
+        this.community = community;
+    }
+
+    public Community getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(Community pincode) {
+        this.pincode = pincode;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public City getCountry() {
+        return country;
+    }
+
+    public void setCountry(City country) {
+        this.country = country;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    
     }
     
+
     
     
     

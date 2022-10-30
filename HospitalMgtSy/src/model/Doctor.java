@@ -11,9 +11,8 @@ package model;
 public class Doctor extends Person {
     
     private String doctorID;
-    private String occupation;
-    private String experience;
-    private String specialization;
+    private String deptartment;
+    private String joiningDate;
 
     public String getDoctorID() {
         return doctorID;
@@ -23,30 +22,24 @@ public class Doctor extends Person {
         this.doctorID = doctorID;
     }
 
-    public String getOccupation() {
-        return occupation;
+    public String getDeptartment() {
+        return deptartment;
     }
 
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
+    public void setDeptartment(String deptartment) {
+        this.deptartment = deptartment;
     }
 
-    public String getExperience() {
-        return experience;
+    public String getJoiningDate() {
+        return joiningDate;
     }
 
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+    public void setJoiningDate(String joiningDate) {
+        this.joiningDate = joiningDate;
     }
     
+
+   
    
     
 }

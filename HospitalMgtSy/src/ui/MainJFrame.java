@@ -39,11 +39,20 @@ public class MainJFrame extends javax.swing.JFrame {
         btnDoctors = new javax.swing.JButton();
         btnSystemAdmin3 = new javax.swing.JButton();
         btnPatients = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 1000));
 
-        btnCommunityAdmin.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        jPanel1.setLayout(null);
+
+        btnCommunityAdmin.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnCommunityAdmin.setForeground(new java.awt.Color(204, 0, 0));
         btnCommunityAdmin.setText("Community Admin");
         btnCommunityAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -51,8 +60,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnCommunityAdminActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCommunityAdmin);
+        btnCommunityAdmin.setBounds(209, 576, 190, 54);
 
-        btnHospitalAdmin.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnHospitalAdmin.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnHospitalAdmin.setForeground(new java.awt.Color(204, 0, 0));
         btnHospitalAdmin.setText("Hospital Admin");
         btnHospitalAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -60,8 +71,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnHospitalAdminActionPerformed(evt);
             }
         });
+        jPanel1.add(btnHospitalAdmin);
+        btnHospitalAdmin.setBounds(428, 576, 180, 54);
 
-        btnDoctors.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnDoctors.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnDoctors.setForeground(new java.awt.Color(204, 0, 0));
         btnDoctors.setText("Doctors");
         btnDoctors.addActionListener(new java.awt.event.ActionListener() {
@@ -69,8 +82,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnDoctorsActionPerformed(evt);
             }
         });
+        jPanel1.add(btnDoctors);
+        btnDoctors.setBounds(660, 580, 180, 50);
 
-        btnSystemAdmin3.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnSystemAdmin3.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnSystemAdmin3.setForeground(new java.awt.Color(204, 0, 0));
         btnSystemAdmin3.setText("System Admin");
         btnSystemAdmin3.addActionListener(new java.awt.event.ActionListener() {
@@ -78,8 +93,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnSystemAdmin3ActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSystemAdmin3);
+        btnSystemAdmin3.setBounds(23, 576, 168, 54);
 
-        btnPatients.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnPatients.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         btnPatients.setForeground(new java.awt.Color(204, 0, 0));
         btnPatients.setText("Patients");
         btnPatients.addActionListener(new java.awt.event.ActionListener() {
@@ -87,41 +104,22 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnPatientsActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(btnSystemAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCommunityAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(btnHospitalAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(btnDoctors, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(btnPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
-        );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCommunityAdmin, btnDoctors, btnHospitalAdmin, btnPatients, btnSystemAdmin3});
-
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(576, 576, 576)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPatients)
-                    .addComponent(btnDoctors)
-                    .addComponent(btnHospitalAdmin)
-                    .addComponent(btnCommunityAdmin)
-                    .addComponent(btnSystemAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(231, 231, 231))
-        );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCommunityAdmin, btnDoctors, btnHospitalAdmin, btnPatients, btnSystemAdmin3});
+        jPanel1.add(btnPatients);
+        btnPatients.setBounds(880, 576, 168, 54);
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(30, 410, 150, 130);
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(430, 410, 150, 130);
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(890, 420, 150, 130);
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(660, 430, 150, 130);
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(210, 410, 150, 130);
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(480, 220, 280, 60);
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, -60, 1100, 920);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,6 +196,13 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnHospitalAdmin;
     private javax.swing.JButton btnPatients;
     private javax.swing.JButton btnSystemAdmin3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
