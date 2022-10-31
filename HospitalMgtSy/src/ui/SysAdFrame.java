@@ -32,7 +32,7 @@ public class SysAdFrame extends javax.swing.JFrame {
         
     }
 
-    SystemAdFrame(DoctorDirectory DocDirectory, HospitalDirectory HospDirectory, PatientDirectory PatDirectory) {
+    SysAdFrame(DoctorDirectory DocDirectory, HospitalDirectory HospDirectory, PatientDirectory PatDirectory) {
         initComponents();
         this.PatDirectory = PatDirectory;
         this.HospDirectory = HospDirectory;
@@ -213,7 +213,9 @@ public class SysAdFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SysAdFrame().setVisible(true);
+            void run();
             }
+            
         });
     }
 

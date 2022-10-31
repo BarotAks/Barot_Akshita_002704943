@@ -129,7 +129,7 @@ public class SysAdDoc extends javax.swing.JFrame {
         VDD.setVisible(true);
         this.dispose();
         
-    }
+    
 
     }//GEN-LAST:event_btnPAppointmentActionPerformed
 

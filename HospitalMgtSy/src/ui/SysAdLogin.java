@@ -145,7 +145,7 @@ public class SysAdLogin extends javax.swing.JFrame {
         doc.setUserName(jUsername.getText());
         doc.setPassword(jPassword.getText());
         
-         if (doc.getUserName().equals("admin") && doc.getPassword().equals("admin")){
+         if (doc.getUserName().equals("admin") && doc.getPassword().equals("abcde")){
             SysAdFrame lp = new SysAdFrame();
             lp.setVisible(true);
             this.dispose();

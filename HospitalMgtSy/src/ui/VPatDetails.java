@@ -4,6 +4,21 @@
  */
 package ui;
 
+import java.awt.event.KeyEvent;
+import java.util.Date;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.City;
+import model.Community;
+import model.DoctorDirectory;
+import model.HospitalDirectory;
+import model.House;
+import model.PatientData;
+import model.PatientDirectory;
+
 /**
  *
  * @author akshitabarot
@@ -13,10 +28,28 @@ public class VPatDetails extends javax.swing.JFrame {
     /**
      * Creates new form VPatDetails
      */
+    
+       PatientDirectory PatDirectory;
+       DoctorDirectory DocDirectory;
+       HospitalDirectory HospDirectory;
+       
+       
     public VPatDetails() {
         initComponents();
     }
-
+    
+    public VPatDetails(DoctorDirectory DocDirectory, HospitalDirectory HospDirectory, PatientDirectory PatDirectory) {
+        initComponents();
+        
+          this.DocDirectory = DocDirectory;   //we are pushing whole reference to DoctorDirectory
+         this.HospDirectory = HospDirectory;
+         this.PatDirectory = PatDirectory; 
+        
+       populateTable();
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,9 +88,9 @@ public class VPatDetails extends javax.swing.JFrame {
         jBackAddPatBtn = new javax.swing.JButton();
         jPhoneNoPat = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        tfPincodeDoc = new javax.swing.JTextField();
+        jPincodePat = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        tfCountryDoc = new javax.swing.JTextField();
+        jCountryPat = new javax.swing.JTextField();
         tfCommunityDoc = new javax.swing.JLabel();
         jCommunityPat = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -65,10 +98,10 @@ public class VPatDetails extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jHeightPat = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        tfSearchDoc = new javax.swing.JTextField();
+        jSearchPat = new javax.swing.JTextField();
         btnDeletePat = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableDoc = new javax.swing.JTable();
+        jTablePat = new javax.swing.JTable();
         btnUpdatePat = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -318,13 +351,13 @@ public class VPatDetails extends javax.swing.JFrame {
         jPanel1.add(jLabel17);
         jLabel17.setBounds(530, 470, 150, 30);
 
-        tfPincodeDoc.addActionListener(new java.awt.event.ActionListener() {
+        jPincodePat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPincodeDocActionPerformed(evt);
+                jPincodePatActionPerformed(evt);
             }
         });
-        jPanel1.add(tfPincodeDoc);
-        tfPincodeDoc.setBounds(720, 470, 220, 30);
+        jPanel1.add(jPincodePat);
+        jPincodePat.setBounds(720, 470, 220, 30);
 
         jLabel18.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 0, 0));
@@ -334,13 +367,13 @@ public class VPatDetails extends javax.swing.JFrame {
         jPanel1.add(jLabel18);
         jLabel18.setBounds(30, 520, 150, 30);
 
-        tfCountryDoc.addActionListener(new java.awt.event.ActionListener() {
+        jCountryPat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCountryDocActionPerformed(evt);
+                jCountryPatActionPerformed(evt);
             }
         });
-        jPanel1.add(tfCountryDoc);
-        tfCountryDoc.setBounds(220, 520, 220, 30);
+        jPanel1.add(jCountryPat);
+        jCountryPat.setBounds(220, 520, 220, 30);
 
         tfCommunityDoc.setFont(new java.awt.Font("Charter", 3, 14)); // NOI18N
         tfCommunityDoc.setForeground(new java.awt.Color(204, 0, 0));
@@ -398,18 +431,18 @@ public class VPatDetails extends javax.swing.JFrame {
         jPanel1.add(jLabel7);
         jLabel7.setBounds(30, 580, 150, 40);
 
-        tfSearchDoc.addActionListener(new java.awt.event.ActionListener() {
+        jSearchPat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSearchDocActionPerformed(evt);
+                jSearchPatActionPerformed(evt);
             }
         });
-        tfSearchDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+        jSearchPat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfSearchDocKeyReleased(evt);
+                jSearchPatKeyReleased(evt);
             }
         });
-        jPanel1.add(tfSearchDoc);
-        tfSearchDoc.setBounds(220, 580, 740, 40);
+        jPanel1.add(jSearchPat);
+        jSearchPat.setBounds(220, 580, 740, 40);
 
         btnDeletePat.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
         btnDeletePat.setForeground(new java.awt.Color(204, 0, 0));
@@ -427,7 +460,7 @@ public class VPatDetails extends javax.swing.JFrame {
         jPanel1.add(btnDeletePat);
         btnDeletePat.setBounds(550, 900, 130, 30);
 
-        jTableDoc.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -438,7 +471,7 @@ public class VPatDetails extends javax.swing.JFrame {
                 "PatID", "FName", "LName", "Age", "Gender", "DOB", "Blood Group", "Address", "Community", "Pincode", "City", "PhoneNo", "Country", "Visiting Date", "Email", "Height", "Weight"
             }
         ));
-        jScrollPane1.setViewportView(jTableDoc);
+        jScrollPane1.setViewportView(jTablePat);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(30, 650, 940, 220);
@@ -570,8 +603,9 @@ public class VPatDetails extends javax.swing.JFrame {
     private void jBackAddPatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackAddPatBtnActionPerformed
         // TODO add your handling code here:
 
-        PatientDetailsAdmin PDA = new PatientDetailsAdmin(DocDirectory, HospDirectory, PatDirectory);
-        PDA.setVisible(true);
+        PatientDetailsAdmin pda1 = new PatientDetailsAdmin(DocDirectory, HospDirectory,PatDirectory);
+        pda1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBackAddPatBtnActionPerformed
 
     private void jPhoneNoPatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPhoneNoPatActionPerformed
@@ -608,13 +642,13 @@ public class VPatDetails extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPhoneNoPatKeyPressed
 
-    private void tfPincodeDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPincodeDocActionPerformed
+    private void jPincodePatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPincodePatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfPincodeDocActionPerformed
+    }//GEN-LAST:event_jPincodePatActionPerformed
 
-    private void tfCountryDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCountryDocActionPerformed
+    private void jCountryPatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCountryPatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCountryDocActionPerformed
+    }//GEN-LAST:event_jCountryPatActionPerformed
 
     private void jCommunityPatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCommunityPatActionPerformed
         // TODO add your handling code here:
@@ -628,32 +662,33 @@ public class VPatDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jHeightPatActionPerformed
 
-    private void tfSearchDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchDocActionPerformed
+    private void jSearchPatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchPatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfSearchDocActionPerformed
+    }//GEN-LAST:event_jSearchPatActionPerformed
 
-    private void tfSearchDocKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSearchDocKeyReleased
+    private void jSearchPatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchPatKeyReleased
         // TODO add your handling code here:
 
-        String search = tfSearchDoc.getText();
+        String search = jSearchPat.getText();
         search(search);
-    }//GEN-LAST:event_tfSearchDocKeyReleased
+        
+    }//GEN-LAST:event_jSearchPatKeyReleased
 
     private void btnDeletePatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletePatMouseClicked
         // TODO add your handling code here:
 
-        int selectedRowIndex = jTableDoc.getSelectedRow();
+        int selectedRowIndex = jTablePat.getSelectedRow();
 
         if(selectedRowIndex<0){
             JOptionPane.showMessageDialog(this, "Please select row to delete");
         }
 
-        DefaultTableModel model = (DefaultTableModel) jTableDoc.getModel();
-        Doctor selectedDoc = (Doctor) model.getValueAt(selectedRowIndex, 0);
+        DefaultTableModel model = (DefaultTableModel) jTablePat.getModel();
+        PatientData selectedPat = (PatientData) model.getValueAt(selectedRowIndex, 0);
 
-        DocDirectory.deleteDoc(selectedDoc);
+        PatDirectory.detelePat(selectedPat);
 
-        JOptionPane.showMessageDialog(this, "Doctor Details has been deleted");
+        JOptionPane.showMessageDialog(this, "Patient Details has been deleted");
 
         populateTable();
 
@@ -670,25 +705,27 @@ public class VPatDetails extends javax.swing.JFrame {
     private void btnUpdatePatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdatePatMouseClicked
         // TODO add your handling code here:
 
-        DefaultTableModel model = (DefaultTableModel) jTableDoc.getModel();
-        if (jTableDoc.getSelectedRowCount()==1){
+        
+        DefaultTableModel model = (DefaultTableModel) jTablePat.getModel();
+        if (jTablePat.getSelectedRowCount()==1){
 
-            String docID = jDocID.getText();
-            String fname = jFNameDoc.getText();
-            String lname = jLNameDoc.getText();
-            int age = Integer.parseInt(jAgeDoc.getText());
-            String gender = jGenderDoc.getSelectedItem().toString();
-            String department = jDepartmentDoc.getSelectedItem().toString();
-            String address = jAddressDoc.getText();
-            String country = jCountryDoc.getText();
-            String community = jCommunityDoc.getText();
-            String bloodgroup = jBGroupDoc.getText();
-            String phoneNo = jPhoneNoDoc.getText();
-            String city = jCityDoc.getText();
-            Date JoiningDate = jJoiningDateDoc.getDate();
-            Date BirthDate = jBirthdateDoc.getDate();
-            String pincode = jPincodeDoc.getText();
-            String email = jEmailDoc.getText();
+            String patientID = jPatID.getText();
+            String fname = jFnamePat.getText();
+            String lname = jLnamePat.getText();
+            int age = Integer.parseInt(jAgePat.getText());
+            String gender = jGenderPat.getSelectedItem().toString();
+            String address = jAddressPat.getText();
+            String country = jCountryPat.getText();
+            String community = jCommunityPat.getText();
+            String bloodgroup = jBGroupPat.getText();
+            String phoneNo = jPhoneNoPat.getText();
+            String city = jCityPat.getText();
+            Date VisitingDate = jVisitDatePat.getDate();
+            Date dob = jDobPat.getDate();
+            String pincode = jPincodePat.getText();
+            String email = jEmailPat.getText();
+            double height = Double.parseDouble(jHeightPat.getText());
+            double weight = Double.parseDouble(jWeightPat.getText());
             int x= 0;
             //String image = image_txt.getText();
             //int length = cellphoneno.length();
@@ -696,65 +733,80 @@ public class VPatDetails extends javax.swing.JFrame {
             int length = phoneNo.length();
             if(length<10){
                 JOptionPane.showMessageDialog(this,
-                    "Invalid! Please enter a cell no of 10 digits",
+                    "Please enter cell no of 10 digits",
                     "Try Again",
                     JOptionPane.ERROR_MESSAGE);
                 x=1;
+
             } else if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", email)))
             {
                 JOptionPane.showMessageDialog(null,
-                    "Please enter a valid email!",
+                    "Please enter a valid email",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
                 x=1;
 
             } if(x!=1){
-                model.setValueAt(docID, jTableDoc.getSelectedRow(),0);
-                model.setValueAt(fname, jTableDoc.getSelectedRow(),1);
-                model.setValueAt(lname, jTableDoc.getSelectedRow(),2);
-                model.setValueAt(age, jTableDoc.getSelectedRow(),3);
-                model.setValueAt(gender, jTableDoc.getSelectedRow(),4);
-                model.setValueAt(BirthDate, jTableDoc.getSelectedRow(),5);
-                model.setValueAt(address, jTableDoc.getSelectedRow(),6);
-                model.setValueAt(city, jTableDoc.getSelectedRow(),7);
-                model.setValueAt(country, jTableDoc.getSelectedRow(),8);
-                model.setValueAt(department, jTableDoc.getSelectedRow(),9);
-                model.setValueAt(bloodgroup, jTableDoc.getSelectedRow(),10);
-                model.setValueAt(phoneNo, jTableDoc.getSelectedRow(),11);
-                model.setValueAt(JoiningDate, jTableDoc.getSelectedRow(),12);
-                model.setValueAt(email, jTableDoc.getSelectedRow(),13);
-                model.setValueAt(pincode, jTableDoc.getSelectedRow(),14);
-                model.setValueAt(community, jTableDoc.getSelectedRow(),15);
+                model.setValueAt(patientID, jTablePat.getSelectedRow(),0);
+                model.setValueAt(fname, jTablePat.getSelectedRow(),1);
+                model.setValueAt(lname, jTablePat.getSelectedRow(),2);
+                model.setValueAt(age, jTablePat.getSelectedRow(),3);
+                model.setValueAt(gender, jTablePat.getSelectedRow(),4);
+                model.setValueAt(dob, jTablePat.getSelectedRow(),5);
+                model.setValueAt(bloodgroup, jTablePat.getSelectedRow(),5);
+                model.setValueAt(address, jTablePat.getSelectedRow(),7);
+                model.setValueAt(community, jTablePat.getSelectedRow(),8);
+                model.setValueAt(pincode, jTablePat.getSelectedRow(),9);
+                model.setValueAt(city, jTablePat.getSelectedRow(),10);
+                model.setValueAt(phoneNo, jTablePat.getSelectedRow(),11);
+                model.setValueAt(country, jTablePat.getSelectedRow(),12);
+                model.setValueAt(VisitingDate, jTablePat.getSelectedRow(),13);
+                model.setValueAt(email, jTablePat.getSelectedRow(),14);
+                model.setValueAt(height, jTablePat.getSelectedRow(),15);
+                model.setValueAt(weight, jTablePat.getSelectedRow(),16);
 
-                JOptionPane.showMessageDialog(this, "Update Successfully!");
+                JOptionPane.showMessageDialog(this, "Update Successfully");
             }
-        }else if (jTableDoc.getRowCount()==0){
+        }
+        else if (jTablePat.getRowCount()==0){
             //if table is empty
-            JOptionPane.showMessageDialog(this, "Table is Empty");
+            JOptionPane.showMessageDialog(this, "Table is empty");
         } else  {
             //if row is not selected or multiple row is selected
             JOptionPane.showMessageDialog(this, "Please select a single row for updation!");
 
         }
 
-        jDocID.setText("");
-        jFNameDoc.setText("");
-        jLNameDoc.setText("");
-        jAgeDoc.setText("");
-        jBGroupDoc.setText("");
-        jGenderDoc.setSelectedIndex(0);
-        jDepartmentDoc.setSelectedIndex(0);
-        jCityDoc.setText("");
-        jAddressDoc.setText("");
-        jPhoneNoDoc.setText("");
-        jPincodeDoc.setText("");
-        jEmailDoc.setText("");
-        jCommunityDoc.setText("");
-        jCountryDoc.setText("");
+       
+        
+        jPatID.setText("");
+        jFnamePat.setText("");
+        jLnamePat.setText("");
+        jAgePat.setText("");
+        jBGroupPat.setText("");
+        jGenderPat.setSelectedIndex(0);
+        jCityPat.setText("");
+        jAddressPat.setText("");
+        jPhoneNoPat.setText("");
+        jPincodePat.setText("");
+        jEmailPat.setText("");
+        jCommunityPat.setText("");
+        jCountryPat.setText("");
         // JJoiningDateDoc.setDate("");
+        jHeightPat.setText("");
+        jWeightPat.setText("");
+        
 
     }//GEN-LAST:event_btnUpdatePatMouseClicked
 
+    public void search(String str){
+        DefaultTableModel model = (DefaultTableModel) jTablePat.getModel();
+        TableRowSorter<DefaultTableModel> trs  = new TableRowSorter<DefaultTableModel>(model);
+        jTablePat.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter(str));
+        
+    }
+    
     private void btnUpdatePatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatePatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdatePatActionPerformed
@@ -765,107 +817,69 @@ public class VPatDetails extends javax.swing.JFrame {
 
     private void jViewPatButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewPatButtonMouseClicked
         // TODO add your handling code here:
+        
+        int selectedRowIndex = jTablePat.getSelectedRow();
 
-        String patID = jPatID.getText();
-        String fname = jFnamePat.getText();
-        String lname = jLnamePat.getText();
-        int age = Integer.parseInt(jAgePat.getText());
-        String gender = jGenderPat.getSelectedItem().toString();
-        Date dob = jDobPat.getDate();
-        String add = jAddressPat.getText();
-        String city = jCityPat.getText();
-        String country = tfCountryDoc.getText();
-        String community = tfCommunityDoc.getText();
-        Date doj = jVisitDatePat.getDate();
-        //Date dob = dobDoc.getDate();
-        String email = jEmailPat.getText();
-        String pincode = tfPincodeDoc.getText();
-        String bloodgroup = jWeightPat.getText();
-        String phoneNo = jPhoneNoPat.getText();
-        int length = phoneNo.length();
-        double height = Double.parseDouble(jHeightPat.getText());
-        double weight = Double.parseDouble(jWeightPat.getText());
-        Date JoiningDate = jVisitDatePat.getDate();
-
-        if (gender.isEmpty() || /*dob.isEmpty() || */ fname.isEmpty() || lname.isEmpty() || community.isEmpty() ||/*age.isEmpty()||*/   add.isEmpty()
-            || city.isEmpty() || country.isEmpty() || patID.isEmpty() ||/* department.isEmpty() || */ bloodgroup.isEmpty() ||
-            /*  phoneNo.isEmpty() ||  doj.isEmpty() ||*/ email.isEmpty() || pincode.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                "Invalid! Kindly enter data in all fields!",
-                "Try Again",
-                JOptionPane.ERROR_MESSAGE);
-        }
-        else if(length<10){
-            JOptionPane.showMessageDialog(this,
-                "Kindly enter cell no of 10 digits",
-                "Try Again",
-                JOptionPane.ERROR_MESSAGE);
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select row to delete");
         }
 
-        else if (!(Pattern.matches("^[a-zA-Z0-9] +[@]{1} +[a-zA-Z0-9]+[.]{1} +[a-zA-Z0-9]+$^", email)))
-        {
-            JOptionPane.showMessageDialog(null,
-                "Kindly enter a valid Email!",
-                "Invalid!",
-                JOptionPane.ERROR_MESSAGE);
+        DefaultTableModel model = (DefaultTableModel) jTablePat.getModel();
+        PatientData selectedPat = (PatientData) model.getValueAt(selectedRowIndex, 0);
 
-        }
+        jPatID.setText(String.valueOf(selectedPat.getPatientID()));  //here String.valueof is used to convert any data type like int to String.
+        //JDocID.setEditable(false);
 
-        else {
-            PatientData pd = PatDirectory.addNewpatData();
-            pd.setfName(fname);
-            pd.setlName(lname);
-            pd.setPatientID(patID);
-            //pd.setDepartment(department);
-            //pd.setJoiningDate(doj);
-            pd.setBloodgroup(bloodgroup);
-            pd.setGender(gender);
-            pd.setAge(age);
-            pd.setPhoneNo(phoneNo);
-            pd.setVisitDate(JoiningDate);
+        jFnamePat.setText(String.valueOf(selectedPat.getfName()));
+        //JFNameDoc.setEditable(false);
 
-            House docHouse = new House();
-            docHouse.setStreetadd(add);
-            pd.setHouse(docHouse);
+        jLnamePat.setText(String.valueOf(selectedPat.getlName()));
+        //JLNameDoc.setEditable(false);
 
-            City docCity = new City();
-            docCity.setCity(city);
-            pd.setCity(docCity);
+        jAgePat.setText(String.valueOf(selectedPat.getAge()));
+        //JAgeDoc.setEditable(false);
 
-            Community docCommunity = new Community();
-            docCommunity.setCommunityName(community);
-            pd.setCommunity(docCommunity);
+        jBGroupPat.setText(String.valueOf(selectedPat.getBloodgroup()));
+        //JBGroupDoc.setEditable(false);
 
-            Community docpincode =  new Community();
-            docpincode.setPincode(pincode);
-            pd.setPincode(docpincode);
+        jGenderPat.setSelectedItem(String.valueOf(selectedPat.getGender()));
+        //JGenderDoc.setEditable(false);
 
-            City docCountry = new City();
-            docCountry.setCountry(country);
-            pd.setCountry(docCountry);
+        House docHouse = selectedPat.getHouse();
+        String stAddress = docHouse.getStreetadd();
+        jAddressPat.setText(String.valueOf(stAddress));
 
-            pd.setDateOfBirth(dob);
-            pd.setVisitDate(doj);
-            pd.setEmailAddress(email);
+        jPhoneNoPat.setText(String.valueOf(selectedPat.getPhoneNo()));
+        //JPhoneNoDoc.setEditable(false);
 
-            JOptionPane.showMessageDialog(this, "New Record added!");
+        City docCity = selectedPat.getCity();
+        String city = docCity.getCity();
+        jCityPat.setText(String.valueOf(city));
 
-            jFnamePat.setText("");
-            jLnamePat.setText("");
-            jAgePat.setText("");
-            jWeightPat.setText("");
-            jAddressPat.setText("");
-            jCityPat.setText("");
-            tfCommunityDoc.setText("");
-            tfCountryDoc.setText("");
-            jPatID.setText("");
-            jEmailPat.setText("");
-            jPhoneNoPat.setText("");
-            tfPincodeDoc.setText("");
-            jGenderPat.setSelectedIndex(0);
-            // cbDept.setSelectedIndex(0);
+        //JCityDoc.setText(String.valueOf(selectedDoc.getCity()));
+        //JCityDoc.setEditable(false);
 
-        }
+        jVisitDatePat.setDate(selectedPat.getVisitDate());
+        // JJoiningDateDoc.setEnabled(false);
+
+        Community docCommunity = selectedPat.getCommunity();
+        String docComm = docCommunity.getCommunityName();
+        jCommunityPat.setText(String.valueOf(docComm));
+
+        Community docpincode = selectedPat.getPincode();
+        String docpcode = docpincode.getPincode();
+        jPincodePat.setText(String.valueOf(docpcode));
+
+        City docCountry = selectedPat.getCountry();
+        String country = docCountry.getCountry();
+        jCountryPat.setText(String.valueOf(country));
+
+        jEmailPat.setText(String.valueOf(selectedPat.getEmailAddress()));
+        jHeightPat.setText(String.valueOf(selectedPat.getHeightIncms()));
+        jWeightPat.setText(String.valueOf(selectedPat.getWeightInkgs()));
+        
+        
+      
     }//GEN-LAST:event_jViewPatButtonMouseClicked
 
     /**
@@ -912,6 +926,7 @@ public class VPatDetails extends javax.swing.JFrame {
     private javax.swing.JButton jBackAddPatBtn;
     private javax.swing.JTextField jCityPat;
     private javax.swing.JTextField jCommunityPat;
+    private javax.swing.JTextField jCountryPat;
     private com.toedter.calendar.JDateChooser jDobPat;
     private javax.swing.JTextField jEmailPat;
     private javax.swing.JTextField jFnamePat;
@@ -940,14 +955,59 @@ public class VPatDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jPatID;
     private javax.swing.JTextField jPhoneNoPat;
+    private javax.swing.JTextField jPincodePat;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableDoc;
+    private javax.swing.JTextField jSearchPat;
+    private javax.swing.JTable jTablePat;
     private javax.swing.JButton jViewPatButton;
     private com.toedter.calendar.JDateChooser jVisitDatePat;
     private javax.swing.JTextField jWeightPat;
     private javax.swing.JLabel tfCommunityDoc;
-    private javax.swing.JTextField tfCountryDoc;
-    private javax.swing.JTextField tfPincodeDoc;
-    private javax.swing.JTextField tfSearchDoc;
     // End of variables declaration//GEN-END:variables
+
+
+    private void populateTable() {
+        
+        
+        DefaultTableModel model = (DefaultTableModel) jTablePat.getModel();
+        model.setRowCount(0);
+        
+        for(PatientData pd : PatDirectory.getPatDirectory()){
+            
+            Object[] row = new Object[16];
+            row[0] =  pd;
+            row[1] =  pd.getfName();
+            row[2] =  pd.getlName();
+            row[3] =  pd.getAge();
+            row[4] =  pd.getGender();
+            row[5] =  pd.getDateOfBirth();
+            row[6] =  pd.getBloodgroup();
+            
+            House hd = pd.getHouse();
+            row[7] =  hd.getStreetadd();
+            
+            Community cc = pd.getCommunity();
+            row[8] = cc.getCommunityName();
+            
+            Community cd = pd.getPincode();
+            row[9] =  cd.getPincode();
+            
+            City cy = pd.getCity();
+            row[10] = cy.getCity();
+            
+            row[11] = pd.getPhoneNo();
+            
+            City ctry = pd.getCountry();         
+            row[12] =  ctry.getCountry();
+            
+            row[13] = pd.getVisitDate();
+            row[14] = pd.getEmailAddress();
+            row[15] = pd.getHeightIncms();
+            row[16] = pd.getWeightInkgs();
+            
+            model.addRow(row);
+            
+            
+        }
+    }
 }

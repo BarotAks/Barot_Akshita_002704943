@@ -129,7 +129,7 @@ public class PatientDetailsAdmin extends javax.swing.JFrame {
 //        VDD.setVisible(true);
 //        this.dispose();
 
-        }
+        
     }//GEN-LAST:event_btnViewPatientDetailsActionPerformed
 
     private void btnAddPatientDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddPatientDetailsMouseClicked
