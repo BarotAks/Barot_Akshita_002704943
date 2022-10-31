@@ -38,11 +38,11 @@ public class DocPatFrame extends javax.swing.JFrame {
 
         jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(570, 420, 260, 260);
+        jLabel2.setBounds(450, 240, 260, 260);
 
         jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 0)));
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(220, 420, 260, 260);
+        jLabel3.setBounds(100, 240, 260, 260);
 
         jButton1.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 0, 0));
@@ -53,7 +53,7 @@ public class DocPatFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(600, 720, 210, 40);
+        jButton1.setBounds(480, 540, 210, 40);
 
         jButton2.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 0, 0));
@@ -64,7 +64,7 @@ public class DocPatFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(480, 820, 100, 40);
+        jButton2.setBounds(360, 640, 100, 40);
 
         jButton3.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(204, 0, 0));
@@ -75,11 +75,12 @@ public class DocPatFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(250, 720, 210, 40);
+        jButton3.setBounds(130, 540, 210, 40);
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -10, 1000, 1040);
+        jLabel1.setBounds(10, 10, 780, 760);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -4,6 +4,9 @@
  */
 package ui;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author akshitabarot
@@ -27,39 +30,49 @@ public class DocFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnPAppointment = new javax.swing.JButton();
-        btnPHistory = new javax.swing.JButton();
-        btnDLogout = new javax.swing.JButton();
+        aptButton = new javax.swing.JButton();
+        jPatDoctor = new javax.swing.JButton();
+        jLogoutDoctor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        btnPAppointment.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
-        btnPAppointment.setForeground(new java.awt.Color(204, 0, 0));
-        btnPAppointment.setText("Appointments");
-        jPanel1.add(btnPAppointment);
-        btnPAppointment.setBounds(97, 214, 230, 68);
+        aptButton.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
+        aptButton.setForeground(new java.awt.Color(204, 0, 0));
+        aptButton.setText("Appointments");
+        jPanel1.add(aptButton);
+        aptButton.setBounds(210, 160, 230, 68);
 
-        btnPHistory.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
-        btnPHistory.setForeground(new java.awt.Color(204, 0, 0));
-        btnPHistory.setText("Patient History");
-        btnPHistory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPHistoryActionPerformed(evt);
+        jPatDoctor.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
+        jPatDoctor.setForeground(new java.awt.Color(204, 0, 0));
+        jPatDoctor.setText("Patient History");
+        jPatDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPatDoctorMouseClicked(evt);
             }
         });
-        jPanel1.add(btnPHistory);
-        btnPHistory.setBounds(97, 354, 230, 68);
+        jPatDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPatDoctorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jPatDoctor);
+        jPatDoctor.setBounds(210, 300, 230, 68);
 
-        btnDLogout.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
-        btnDLogout.setForeground(new java.awt.Color(204, 0, 0));
-        btnDLogout.setText("LOG OUT");
-        jPanel1.add(btnDLogout);
-        btnDLogout.setBounds(137, 486, 155, 37);
+        jLogoutDoctor.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        jLogoutDoctor.setForeground(new java.awt.Color(204, 0, 0));
+        jLogoutDoctor.setText("LOG OUT");
+        jLogoutDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLogoutDoctorMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLogoutDoctor);
+        jLogoutDoctor.setBounds(250, 430, 155, 37);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 990, 990);
+        jLabel1.setBounds(0, 0, 680, 620);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,23 +80,43 @@ public class DocFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPHistoryActionPerformed
+    private void jPatDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPatDoctorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPHistoryActionPerformed
+    }//GEN-LAST:event_jPatDoctorActionPerformed
+
+    private void jPatDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPatDoctorMouseClicked
+        // TODO add your handling code here:
+        
+        DocPatFrame dpp= new DocPatFrame();
+        dpp.setVisible(true); 
+        
+    }//GEN-LAST:event_jPatDoctorMouseClicked
+
+    private void jLogoutDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLogoutDoctorMouseClicked
+        // TODO add your handling code here:
+        
+        JFrame frame = new JFrame("Logout");
+        if(JOptionPane.showConfirmDialog(frame, "Confirm if you want to Logout", "Logout", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
+        {
+            //System.exit(0);
+             DocLogin dl = new DocLogin();
+             dl.setVisible(true);
+        }
+    }//GEN-LAST:event_jLogoutDoctorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -121,10 +154,10 @@ public class DocFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDLogout;
-    private javax.swing.JButton btnPAppointment;
-    private javax.swing.JButton btnPHistory;
+    private javax.swing.JButton aptButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jLogoutDoctor;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jPatDoctor;
     // End of variables declaration//GEN-END:variables
 }

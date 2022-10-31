@@ -4,6 +4,9 @@
  */
 package ui;
 
+import model.HospitalDirectory;
+import model.PatientDirectory;
+
 /**
  *
  * @author akshitabarot
@@ -13,10 +16,22 @@ public class CommunityAd extends javax.swing.JFrame {
     /**
      * Creates new form CommunityAd
      */
+    
+    HospitalDirectory HospDirectory;
+    PatientDirectory PatDirectory;
+    
     public CommunityAd() {
         initComponents();
     }
 
+    CommunityAd(HospitalDirectory HospDirectory, PatientDirectory PatDirectory) {
+         initComponents();
+
+         this.HospDirectory = HospDirectory;
+         this.PatDirectory = PatDirectory;
+         
+      
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,21 +41,70 @@ public class CommunityAd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnBackDoctorDetailsAdmin = new javax.swing.JButton();
+        jAssignHospBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(null);
+
+        btnBackDoctorDetailsAdmin.setFont(new java.awt.Font("Charter", 1, 14)); // NOI18N
+        btnBackDoctorDetailsAdmin.setForeground(new java.awt.Color(204, 0, 0));
+        btnBackDoctorDetailsAdmin.setText("BACK");
+        btnBackDoctorDetailsAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackDoctorDetailsAdminActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBackDoctorDetailsAdmin);
+        btnBackDoctorDetailsAdmin.setBounds(200, 274, 90, 40);
+
+        jAssignHospBtn.setFont(new java.awt.Font("Charter", 1, 18)); // NOI18N
+        jAssignHospBtn.setForeground(new java.awt.Color(204, 0, 0));
+        jAssignHospBtn.setText("ASSIGN HOSPITAL");
+        jAssignHospBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jAssignHospBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jAssignHospBtn);
+        jAssignHospBtn.setBounds(140, 160, 200, 50);
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 540, 450);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackDoctorDetailsAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackDoctorDetailsAdminActionPerformed
+        // TODO add your handling code here:
+        
+        MainJFrame lp = new MainJFrame();
+        lp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackDoctorDetailsAdminActionPerformed
+
+    private void jAssignHospBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAssignHospBtnMouseClicked
+        // TODO add your handling code here:
+        
+        CommunityAdminDetails CAD = new CommunityAdminDetails();     //Add doctor needs reference through DoctorDirectory to DocDirectory variable. DoctorDirectory needs to know the referennce in order to save the data for doctor.
+        CAD.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jAssignHospBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +142,9 @@ public class CommunityAd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBackDoctorDetailsAdmin;
+    private javax.swing.JButton jAssignHospBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

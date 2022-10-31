@@ -480,6 +480,7 @@ public class ADocDetails extends javax.swing.JFrame {
         String phoneNo = tfPhoneNoDoc.getText();
         int length = phoneNo.length();
         Date doj = dojDoc.getDate();
+        //Date dob = dobDoc.getDate();
         String email = tfEmailDoc.getText();
         String pincode = tfPincodeDoc.getText();
         
@@ -496,6 +497,14 @@ public class ADocDetails extends javax.swing.JFrame {
                     "Try Again",
                     JOptionPane.ERROR_MESSAGE);
         }
+        
+        else if(length<10){
+            JOptionPane.showMessageDialog(this,
+                "Please enter cell no of 10 digits",
+                "Try Again",
+                JOptionPane.ERROR_MESSAGE);
+        }
+        
         else if (!(Pattern.matches("^[a-zA-Z0-9] +[@]{1} +[a-zA-Z0-9]+[.]{1} +[a-zA-Z0-9]+$^", email)))
                 {
                     JOptionPane.showMessageDialog(null, 
@@ -538,8 +547,10 @@ public class ADocDetails extends javax.swing.JFrame {
             docCountry.setCountry(country);
             dd.setCountry(docCountry);
             
+            
+            dd.setDateOfBirth(dob);
             dd.setJoiningDate(doj);
-            dd.setEmailAdd(email);
+            dd.setEmailAddress(email);
             
             
             JOptionPane.showMessageDialog(this, "New Record added!");
